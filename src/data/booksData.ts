@@ -1,25 +1,25 @@
-interface Books {
-    Nombre: string;
-    SKU: string;
-    ISBN: number;
+export interface Books {
+    Name: string;
+    SKU?: string;
+    ISBN?: number;
     Author: string;
-    Publisher: string;
-    Category: string;
-    Subjects: string;
-    Language: string;
+    Publisher?: string;
+    Category?: string;
+    Subjects?: string;
+    Language?: string;
     Description: string;
-    Condition: string;
-    Warehouse: string;
-    Filter: string;
-    PrecioDeCoste: number;
+    Condition?: string;
+    Warehouse?: string;
+    Filter?: string;
+    PrecioDeCoste?: number;
     PreciodeVenta: number;
-    StockonHand: number;
-    URL: string | null;
+    StockonHand?: number;
+    URL?: string | null;
 }
 
 export const booksData: Books[] = [
     {
-        Nombre: "Perfect Pets Journal (Adopt Me!) ",
+        Name: "Perfect Pets Journal (Adopt Me!) ",
         SKU: "9780063312845A",
         ISBN: 9780063312845,
         Author: "Uplift Games Llc",
@@ -37,7 +37,7 @@ export const booksData: Books[] = [
         URL: null
     },
     {
-        Nombre: "Hide & Seek Pets (Adopt Me!)",
+        Name: "Hide & Seek Pets (Adopt Me!)",
         SKU: "9780063318021A",
         ISBN: 9780063318021,
         Author: "Uplift Games Llc",
@@ -55,7 +55,7 @@ export const booksData: Books[] = [
         URL: null
     },
     {
-        Nombre:"Adopt Me! The Official Game Guide",
+        Name:"Adopt Me! The Official Game Guide",
         SKU:"9780063318076A",
         ISBN:9780063318076,
         Author:"Workman Publishing",
@@ -73,7 +73,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Disney Princess Mad Libs",
+        Name:"Disney Princess Mad Libs",
         SKU:"9780593093924A",
         ISBN:9780593093924,
         Author:"Sarah\u202fFabiny",
@@ -91,7 +91,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Spencer Goes to School (Spencer the Cat)",
+        Name:"Spencer Goes to School (Spencer the Cat)",
         SKU:"9781523514892A",
         ISBN:9781523514892,
         Author:"Michelle Romo",
@@ -109,7 +109,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Addition and Subtraction: Use Math to Create 10 Baby Animals! (Learn By Sticker)",
+        Name:"Addition and Subtraction: Use Math to Create 10 Baby Animals! (Learn By Sticker)",
         SKU:"9781523519781A",
         ISBN:9781523519781,
         Author:"Workman Publishing ",
@@ -127,7 +127,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"A Book About Mom With Words and Pictures by Me",
+        Name:"A Book About Mom With Words and Pictures by Me",
         SKU:"9781523512102A",
         ISBN:9781523512102,
         Author:"Workman Publishing ",
@@ -145,7 +145,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Easter (Paint by Sticker Kids)",
+        Name:"Easter (Paint by Sticker Kids)",
         SKU:"9781523510429A",
         ISBN:9781523510429,
         Author:"Workman Publishing ",
@@ -163,7 +163,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"The Ultimate Biography of Earth: From the Big Bang to Today!",
+        Name:"The Ultimate Biography of Earth: From the Big Bang to Today!",
         SKU:"9781523513598A",
         ISBN:9781523513598,
         Author:" Nick Lund; Jason Ford",
@@ -181,7 +181,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Alphabet (Learn & Explore)",
+        Name:"Alphabet (Learn & Explore)",
         SKU:"9781684493371A",
         ISBN:9781684493371,
         Author:"Roger Priddy",
@@ -199,7 +199,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Time to Explore (Let's Learn)",
+        Name:"Time to Explore (Let's Learn)",
         SKU:"9781645172048A",
         ISBN:9781645172048,
         Author:"Lauren Holowaty, Beatrice Tinarelli",
@@ -217,7 +217,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Adorable Animals (Color Me Creative)",
+        Name:"Adorable Animals (Color Me Creative)",
         SKU:"9781645171737A",
         ISBN:9781645171737,
         Author:"Silver Dolphin Books",
@@ -235,7 +235,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"On the Go! (Color Me Creative)",
+        Name:"On the Go! (Color Me Creative)",
         SKU:"9781645175117A",
         ISBN:9781645175117,
         Author:"Silver Dolphin Books",
@@ -253,7 +253,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Unicorns Sticker and Activity Book (Be a Mask Hero!)",
+        Name:"Unicorns Sticker and Activity Book (Be a Mask Hero!)",
         SKU:"9781645178347A",
         ISBN:9781645178347,
         Author:" Connie Isaacs, Bethany Carr",
@@ -271,7 +271,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Moo Lift the Flap (Peek-a-Boo Baby)",
+        Name:"Moo Lift the Flap (Peek-a-Boo Baby)",
         SKU:"9781645173076A",
         ISBN:9781645173076,
         Author:"Roger Priddy",
@@ -289,7 +289,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Mommy, You're the Best! (Special Delivery Books)",
+        Name:"Mommy, You're the Best! (Special Delivery Books)",
         SKU:"9781684122745A",
         ISBN:9781684122745,
         Author:"Aggie Cheung ",
@@ -307,7 +307,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Hand Art (Little Hands)",
+        Name:"Hand Art (Little Hands)",
         SKU:"9781645175728A",
         ISBN:9781645175728,
         Author:"Grace Baranowski",
@@ -325,7 +325,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Haunted Halloween Coloring & Activity Book with Pencil Toppers",
+        Name:"Haunted Halloween Coloring & Activity Book with Pencil Toppers",
         SKU:"9781645176817A",
         ISBN:9781645176817,
         Author:"Maggie Fischer, Eric Wolfe Hanson, Luke Newell",
@@ -343,7 +343,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Brown Bear, Brown Bear, What Do You See? (Slide And Find)",
+        Name:"Brown Bear, Brown Bear, What Do You See? (Slide And Find)",
         SKU:"9780312509262A",
         ISBN:9780312509262,
         Author:"Eric Carle",
@@ -361,7 +361,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Little Book of Thanks From Brown Bear and Friends (World of Eric Carle)",
+        Name:"Little Book of Thanks From Brown Bear and Friends (World of Eric Carle)",
         SKU:"9781250881502A",
         ISBN:9781250881502,
         Author:"Eric Carle, Odd Dot",
@@ -379,7 +379,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"My First I See You Mirror Book (The World of Eric Carle)",
+        Name:"My First I See You Mirror Book (The World of Eric Carle)",
         SKU:"9781534424548A",
         ISBN:9781534424548,
         Author:"Eric Carle",
@@ -397,7 +397,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Croc in Love: A Pop-Up Book",
+        Name:"Croc in Love: A Pop-Up Book",
         SKU:"9780312529345A",
         ISBN:9780312529345,
         Author:"Roger Priddy",
@@ -415,7 +415,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Early Learning Activity Book (Wipe Clean)",
+        Name:"Early Learning Activity Book (Wipe Clean)",
         SKU:"9780312499228A",
         ISBN:9780312499228,
         Author:"Roger Priddy",
@@ -433,7 +433,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Easter Fun! (Alphaprints)",
+        Name:"Easter Fun! (Alphaprints)",
         SKU:"9780312521561A",
         ISBN:9780312521561,
         Author:"Roger Priddy",
@@ -451,7 +451,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Easter on the Farm Seek & Find Flap Book!",
+        Name:"Easter on the Farm Seek & Find Flap Book!",
         SKU:"9781684491926A",
         ISBN:9781684491926,
         Author:"Roger Priddy",
@@ -469,7 +469,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Fuzzy Friends Valentine 3-Book Box Set (Bear Hugs /Puppy Love /Purrfect Kitty)",
+        Name:"Fuzzy Friends Valentine 3-Book Box Set (Bear Hugs /Puppy Love /Purrfect Kitty)",
         SKU:"9781684494279A",
         ISBN:9781684494279,
         Author:"Roger Priddy",
@@ -487,7 +487,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Look At Me (See, Touch, Feel)",
+        Name:"Look At Me (See, Touch, Feel)",
         SKU:"9781684494255A",
         ISBN:9781684494255,
         Author:"Roger Priddy",
@@ -505,7 +505,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Tummy Time (See, Touch, Feel)",
+        Name:"Tummy Time (See, Touch, Feel)",
         SKU:"9781684492664A",
         ISBN:9781684492664,
         Author:"Roger Priddy",
@@ -523,7 +523,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Love Bugs (Tiny Touch)",
+        Name:"Love Bugs (Tiny Touch)",
         SKU:"9781638544692A",
         ISBN:9781638544692,
         Author:" Kidsbooks Publishing",
@@ -541,7 +541,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Farm Touch and Feel Sound Board",
+        Name:"Farm Touch and Feel Sound Board",
         SKU:"9781638542773A",
         ISBN:9781638542773,
         Author:" Kidsbooks Publishing",
@@ -559,7 +559,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"You and Me",
+        Name:"You and Me",
         SKU:"9781638541646A",
         ISBN:9781638541646,
         Author:" Kidsbooks Publishing",
@@ -577,7 +577,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Search & Find: Animals Listen & Learn",
+        Name:"Search & Find: Animals Listen & Learn",
         SKU:"9781628858761A",
         ISBN:9781628858761,
         Author:" Kidsbooks Publishing",
@@ -595,7 +595,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Friendly Faces: A First Book of Friendship and Feelings",
+        Name:"Friendly Faces: A First Book of Friendship and Feelings",
         SKU:"9781647229023A",
         ISBN:9781647229023,
         Author:"Rosa La Barbera, Giulia Priori",
@@ -613,7 +613,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Letters (Write-On, Wipe-Off Learning Cards)",
+        Name:"Letters (Write-On, Wipe-Off Learning Cards)",
         SKU:"9781411463394A",
         ISBN:9781411463394,
         Author:"Flash Kids Editors, Mircea Catusanu",
@@ -631,7 +631,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Llama Llama Happy Birthday! (Llama Llama)",
+        Name:"Llama Llama Happy Birthday! (Llama Llama)",
         SKU:"9780593092903A",
         ISBN:9780593092903,
         Author:"Anna Dewdney",
@@ -649,7 +649,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"My First Numbers (My Baby & Me)",
+        Name:"My First Numbers (My Baby & Me)",
         SKU:"9781837716258A",
         ISBN:9781837716258,
         Author:"IglooBooks, Ag Jatkowska",
@@ -667,7 +667,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"I Can Tie My Own Shoes (I Can)",
+        Name:"I Can Tie My Own Shoes (I Can)",
         SKU:"9781801054737A",
         ISBN:9781801054737,
         Author:"Oakley Graham, Carrie Hennon",
@@ -685,7 +685,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Pocket Full of Sads",
+        Name:"Pocket Full of Sads",
         SKU:"9780593564561A",
         ISBN:9780593564561,
         Author:"Brad Davidson",
@@ -703,7 +703,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"The Magic Hug: A Story About Emotions",
+        Name:"The Magic Hug: A Story About Emotions",
         SKU:"9781910716922A",
         ISBN:9781910716922,
         Author:"Fifi Kuo",
@@ -721,7 +721,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"This Little Light of Mine",
+        Name:"This Little Light of Mine",
         SKU:"9781419774218A",
         ISBN:9781419774218,
         Author:"Sawyer Cloud",
@@ -739,7 +739,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"First Spooky Words",
+        Name:"First Spooky Words",
         SKU:"9781684492367A",
         ISBN:9781684492367,
         Author:"Roger Priddy",
@@ -757,7 +757,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"My First 1000 Words (Bright Bee)",
+        Name:"My First 1000 Words (Bright Bee)",
         SKU:"9781837717873A",
         ISBN:9781837717873,
         Author:" IglooBooks, Alice Potter",
@@ -775,7 +775,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Learn With Me! Colors",
+        Name:"Learn With Me! Colors",
         SKU:"9781912006250A",
         ISBN:9781912006250,
         Author:"Ilana Exelby",
@@ -793,7 +793,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Peppa's Colorful World (Peppa Pig)",
+        Name:"Peppa's Colorful World (Peppa Pig)",
         SKU:"9780593118917A",
         ISBN:9780593118917,
         Author:" Golden Books",
@@ -811,7 +811,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Kawaii Drawing: Learn to Draw More Than 100 Super Cute Things",
+        Name:"Kawaii Drawing: Learn to Draw More Than 100 Super Cute Things",
         SKU:"9780760385340A",
         ISBN:9780760385340,
         Author:"Becky Castaneda",
@@ -829,7 +829,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Draw Kawaii Style: A Beginner's Step-by-Step Guide for Drawing Super-Cute Creatures, Whimsical People, and Fun Little Things",
+        Name:"Draw Kawaii Style: A Beginner's Step-by-Step Guide for Drawing Super-Cute Creatures, Whimsical People, and Fun Little Things",
         SKU:"9780760382448A",
         ISBN:9780760382448,
         Author:"Ilaria Ranauro",
@@ -847,7 +847,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Epic Inventions (Minecraft)",
+        Name:"Epic Inventions (Minecraft)",
         SKU:"9780593497647A",
         ISBN:9780593497647,
         Author:"Mojang AB",
@@ -865,7 +865,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Master Builds: A Showcase of Breathtaking Creations (Minecraft",
+        Name:"Master Builds: A Showcase of Breathtaking Creations (Minecraft",
         SKU:"9780593598993A",
         ISBN:9780593598993,
         Author:"Mojang AB",
@@ -883,7 +883,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Fight for Dusty Divot (Trapped in Battle Royale, Bk. 5)",
+        Name:"Fight for Dusty Divot (Trapped in Battle Royale, Bk. 5)",
         SKU:"9781510743489A",
         ISBN:9781510743489,
         Author:"Devin Hunter",
@@ -901,7 +901,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Yoda (Star Wars)",
+        Name:"Yoda (Star Wars)",
         SKU:"9781302933081A",
         ISBN:9781302933081,
         Author:"Jody Houser, Luke Ross",
@@ -919,7 +919,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Solo: A Star Wars Story",
+        Name:"Solo: A Star Wars Story",
         SKU:"9781302915728A",
         ISBN:9781302915728,
         Author:"Robbie Thompson",
@@ -937,7 +937,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Ahsoka vs. Maul (Star Wars: The Clone Wars)",
+        Name:"Ahsoka vs. Maul (Star Wars: The Clone Wars)",
         SKU:"9780736443562A",
         ISBN:9780736443562,
         Author:"Random House",
@@ -955,7 +955,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Boca Juniors (Soccer Champions)",
+        Name:"Boca Juniors (Soccer Champions)",
         SKU:"9781608189779A",
         ISBN:9781608189779,
         Author:"Jim Whiting",
@@ -973,7 +973,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"River Plate (Soccer Champions)",
+        Name:"River Plate (Soccer Champions)",
         SKU:"9781608189786A",
         ISBN:9781608189786,
         Author:"Jim Whiting",
@@ -991,7 +991,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Soccer: The Skills You Need to Play the Ultimate Game",
+        Name:"Soccer: The Skills You Need to Play the Ultimate Game",
         SKU:"9780753475478A",
         ISBN:9780753475478,
         Author:"Clive Gifford",
@@ -1009,7 +1009,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Messi: Life Lessons From a Legend",
+        Name:"Messi: Life Lessons From a Legend",
         SKU:"9781250358790A",
         ISBN:9781250358790,
         Author:"Sean Deveney, Gilang Bogy",
@@ -1027,7 +1027,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"The Color of Us: My First Book of Skin Colors",
+        Name:"The Color of Us: My First Book of Skin Colors",
         SKU:"9781803374734A",
         ISBN:9781803374734,
         Author:"Christie Hainsby, Lezette Rivera",
@@ -1045,7 +1045,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"My First Book of Numbers (The Montessori Method)",
+        Name:"My First Book of Numbers (The Montessori Method)",
         SKU:"9780593173138A",
         ISBN:9780593173138,
         Author:"The Montessori Method",
@@ -1063,7 +1063,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Squishy Squashy Pumpkin (Squishy Squashy Books)",
+        Name:"Squishy Squashy Pumpkin (Squishy Squashy Books)",
         SKU:"9781789583410A",
         ISBN:9781789583410,
         Author:"Georgina Wren",
@@ -1081,7 +1081,7 @@ export const booksData: Books[] = [
         URL:null
     },
     {
-        Nombre:"Primeras First 100 Palabras Words",
+        Name:"Primeras First 100 Palabras Words",
         SKU:"9780312515836A",
         ISBN:9780312515836,
         Author:"Roger Priddy",

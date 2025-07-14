@@ -1,34 +1,28 @@
-import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
+import { type Books } from "data/booksData";
 
-// Define types for the data
-interface DataItem {
-  id: number;
-  name: string;
-  value: string;
-  author: string;
-}
-
+// use Books interface from the data module
 interface DynamicPdfDocumentProps {
-  data: DataItem[];
+  data: Books[];
 }
 
 const styles = StyleSheet.create({
   page: {
-    flexDirection: 'column',
-    backgroundColor: '#F5F5F5',
+    flexDirection: "column",
+    backgroundColor: "#F5F5F5",
     padding: 20,
   },
   section: {
     margin: 10,
     padding: 10,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     borderRadius: 5,
-    boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+    boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
   },
   title: {
     fontSize: 18,
     marginBottom: 10,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   item: {
     fontSize: 14,
@@ -41,10 +35,11 @@ export const DynamicPdfDocument = ({ data }: DynamicPdfDocumentProps) => (
     <Page size="A4" style={styles.page}>
       <Text style={styles.title}>Reporte de libros</Text>
       {data.map((item) => (
-        <View key={item.id} style={styles.section}>
-          <Text style={styles.item}>Nombre: {item.name}</Text>
-          <Text style={styles.item}>Valor: {item.value}</Text>
-          <Text style={styles.item}>Autor: {item.author}</Text>
+        <View key={item.Name} style={styles.section}>
+          <Text style={styles.item}>Nombre: {item.Name}</Text>
+          <Text style={styles.item}>Descripción: {item.Description}</Text>
+          <Text style={styles.item}>Autor: {item.Author}</Text>
+          <Text style={styles.item}>Precio: ${item.PreciodeVenta.toFixed(2)}</Text>
         </View>
       ))}
     </Page>

@@ -6,6 +6,7 @@ export type Book = {
   author: string;
   description: string;
   price: number;
+  URL: string; // URL for the book cover image
 };
 
 interface BookCardContentProps {
@@ -17,7 +18,11 @@ export function BookCardContentProps({ book }: BookCardContentProps) {
     <div className="d-flex flex-row">
       <Card.Img
         variant="top"
-        src={`https://picsum.photos/seed/${book.id}/200/300`}
+        src={book.URL}
+        onError={(e) => {
+          e.currentTarget.onerror = null; // Prevent infinite loop 
+          e.currentTarget.src = "https://placeholder.pics/svg/200x300/DEDEDE/555555/Book"; 
+        }}
         className="flex-shrink-0"
         style={{ width: "200px", height: "300px" }}
       />

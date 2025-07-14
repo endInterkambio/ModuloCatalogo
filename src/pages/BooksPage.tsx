@@ -18,6 +18,7 @@ function BookPage() {
                   name: book.Name ?? "",
                   description: book.Description ?? "",
                   price: book.PreciodeVenta ?? 0,
+                  URL: book.URL ?? "",
                 }}
               />
             </Card>

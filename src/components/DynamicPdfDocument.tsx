@@ -5,6 +5,7 @@ interface DataItem {
   id: number;
   name: string;
   value: string;
+  author: string;
 }
 
 interface DynamicPdfDocumentProps {
@@ -38,11 +39,12 @@ const styles = StyleSheet.create({
 export const DynamicPdfDocument = ({ data }: DynamicPdfDocumentProps) => (
   <Document>
     <Page size="A4" style={styles.page}>
-      <Text style={styles.title}>Reporte de Datos</Text>
+      <Text style={styles.title}>Reporte de libros</Text>
       {data.map((item) => (
         <View key={item.id} style={styles.section}>
           <Text style={styles.item}>Nombre: {item.name}</Text>
           <Text style={styles.item}>Valor: {item.value}</Text>
+          <Text style={styles.item}>Autor: {item.author}</Text>
         </View>
       ))}
     </Page>

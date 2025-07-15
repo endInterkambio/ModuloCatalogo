@@ -1,18 +1,10 @@
 import { Card } from "react-bootstrap";
 import { MdCheckCircle } from "react-icons/md";
-
-export type Book = {
-  id: string;
-  name: string;
-  author: string;
-  description: string;
-  price: number;
-  URL: string; // URL for the book cover image
-};
+import { type Book } from "@/data/booksData";
 
 interface BookCardContentProps {
   book: Book;
-  onSelect: (id: string) => void;
+  onSelect: (book: Book) => void;
   isSelected: boolean;
 }
 
@@ -22,7 +14,7 @@ export function BookCardContentProps({ book, onSelect, isSelected }: BookCardCon
     <div
       className={`d-flex flex-row clickable${isSelected ? " selected" : ""}`}
       style={{ cursor: "pointer", position: "relative", background: isSelected ? "#e3f2fd" : undefined }}
-      onClick={() => onSelect(book.id)}
+      onClick={() => onSelect(book)}
     >
       <Card.Img
         variant="top"
@@ -50,12 +42,12 @@ export function BookCardContentProps({ book, onSelect, isSelected }: BookCardCon
       )}
       <Card.Body className="d-flex flex-column flex-grow-1">
         <div className="pb-4">
-          <Card.Title>{book.name}</Card.Title>
-          <Card.Subtitle>{book.author}</Card.Subtitle>
-          <Card.Text className="description">{book.description}</Card.Text>
+          <Card.Title className="fw-bold">{book.Name}</Card.Title>
+          <Card.Subtitle>{book.Author}</Card.Subtitle>
+          <Card.Text className="description">{book.Description}</Card.Text>
         </div>
-        <Card.Footer className="mt-auto">
-          S/.{book.price.toFixed(2)}
+        <Card.Footer className="mt-auto fw-bold text-center fs-3">
+          S/.{book.PreciodeVenta.toFixed(2)}
         </Card.Footer>
       </Card.Body>
     </div>

@@ -1,0 +1,33 @@
+import { Card, Col, Container, Row } from "react-bootstrap";
+import { BookCardContentProps } from "@components/BookCardContent";
+import { booksData } from "@/data/booksData";
+import { type Book } from "data/booksData";
+import { useBookStore } from "@/stores/useBookStore";
+
+function BookPage() {
+  const selectedBooks = useBookStore((state) => state.selectedBooks);
+  const toggleBook = useBookStore((state) => state.toggleBook);
+
+  return (
+    <Container>
+      <Row>
+        {booksData.map((book: Book) => {
+          const isSelected = selectedBooks.some((b) => b.SKU === book.SKU);
+          return (
+            <Col key={book.SKU} xs={12} sm={4} md={4} className="p-3">
+              <Card className="d-flex flex-row" style={{ height: "300px" }}>
+                <BookCardContentProps
+                  book={book}
+                  onSelect={toggleBook}
+                  isSelected={isSelected}
+                />
+              </Card>
+            </Col>
+          );
+        })}
+      </Row>
+    </Container>
+  );
+}
+
+export default BookPage;

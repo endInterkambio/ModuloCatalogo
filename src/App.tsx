@@ -3,7 +3,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css"; 
 //import { DynamicPdfDocument } from "@components/DynamicPdfDocument";
 //import { booksData } from "@/data/booksData";
-import BookPage from "./pages/BooksPage";
+import BookPage from "@/pages/BookPage";
 import NavBar from "@components/NavBar";
 
 function App() {

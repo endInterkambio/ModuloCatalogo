@@ -1,4 +1,4 @@
-export interface Books {
+export interface Book {
     Name: string;
     SKU?: string;
     ISBN?: number;
@@ -17,7 +17,7 @@ export interface Books {
     URL: string | "";
 }
 
-export const booksData: Books[] = [
+export const booksData: Book[] = [
     {
         Name: "Perfect Pets Journal (Adopt Me!) ",
         SKU: "9780063312845A",

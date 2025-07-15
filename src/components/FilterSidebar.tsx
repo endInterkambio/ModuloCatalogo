@@ -11,8 +11,8 @@ const ProductListPage = () => {
     useState<SingleValue<{ value: string; label: string }>>(null);
   const [selectedStock, setSelectedStock] =
     useState<SingleValue<{ value: string; label: string }>>(null);
-  //const [selectedShelf, setSelectedShelf] = useState(null);
-  //const [selectedFloor, setSelectedFloor] = useState(null);
+  const [selectedShelf, setSelectedShelf] = useState<SingleValue<{ value: number; label: string }>>(null);
+  const [selectedFloor, setSelectedFloor] = useState<SingleValue<{ value: number; label: string }>>(null);
 
   useEffect(() => {
     let filtered = [...booksData];
@@ -43,13 +43,13 @@ const ProductListPage = () => {
       }
     }
 
-    /*// Filtro por ubicación (estante y piso)
+    // Filtro por ubicación (estante y piso)
     if (selectedShelf) {
-      filtered = filtered.filter((book) => book.Shelf === selectedShelf.value);
+      filtered = filtered.filter((book) => book.BookCase === selectedShelf.value);
     }
     if (selectedFloor) {
-      filtered = filtered.filter((book) => book.Floor === selectedFloor.value);
-    }*/
+      filtered = filtered.filter((book) => book.BookCaseFloor === selectedFloor.value);
+    }
 
     // Orden alfabético
     if (sortOrder === "A-Z") {
@@ -60,14 +60,14 @@ const ProductListPage = () => {
 
     setBooks(filtered);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sortOrder, selectedPrice, selectedStock]);
+  }, [sortOrder, selectedPrice, selectedStock, selectedShelf, selectedFloor]);
 
   const estantes = [...Array(17).keys()].map((i) => ({
     value: i + 1,
     label: `Estante ${i + 1}`,
   }));
 
-  const pisos = [...Array(3).keys()].map((i) => ({
+  const pisos = [...Array(5).keys()].map((i) => ({
     value: i + 1,
     label: `Piso ${i + 1}`,
   }));
@@ -163,6 +163,8 @@ const ProductListPage = () => {
               <Select
                 options={estantes}
                 placeholder="Selecciona estante"
+                value={selectedShelf}
+                onChange={setSelectedShelf}
                 styles={{
                   container: (base) => ({
                     ...base,
@@ -185,6 +187,8 @@ const ProductListPage = () => {
               <Select
                 options={pisos}
                 placeholder="Selecciona piso"
+                value={selectedFloor}
+                onChange={setSelectedFloor}
                 styles={{
                   container: (base) => ({
                     ...base,

@@ -15,8 +15,8 @@ export interface Book {
     PreciodeVenta: number;
     StockonHand: number;
     URL: string | "";
-    //BookCase: number; // Estante
-    //BookCaseFloor: number; // Piso
+    BookCase: number; // Estante
+    BookCaseFloor: number; // Piso
 }
 
 export const booksData: Book[] = [
@@ -36,7 +36,9 @@ export const booksData: Book[] = [
         PrecioDeCoste: 56.64,
         PreciodeVenta: 100,
         StockonHand: 5,
-        URL: "https://pictures.abebooks.com/isbn/9780063312845-us.jpg"
+        URL: "https://pictures.abebooks.com/isbn/9780063312845-us.jpg",
+        BookCase: 1,
+        BookCaseFloor: 1
     },
     {
         Name: "Hide & Seek Pets (Adopt Me!)",
@@ -54,7 +56,9 @@ export const booksData: Book[] = [
         PrecioDeCoste: 56.64,
         PreciodeVenta: 100,
         StockonHand: 1,
-        URL: "https://pictures.abebooks.com/isbn/9780063318021-us.jpg"
+        URL: "https://pictures.abebooks.com/isbn/9780063318021-us.jpg",
+        BookCase: 1,
+        BookCaseFloor: 1
     },
     {
         Name:"Adopt Me! The Official Game Guide",
@@ -72,7 +76,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:56.64,
         PreciodeVenta:100,
         StockonHand:21,
-        URL:"https://pictures.abebooks.com/isbn/9780063318076-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9780063318076-us.jpg",
+        BookCase: 7,
+        BookCaseFloor: 5,
     },
     {
         Name:"Disney Princess Mad Libs",
@@ -90,7 +96,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:53.06,
         PreciodeVenta:94,
         StockonHand:15,
-        URL:"https://pictures.abebooks.com/isbn/9780593093924-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9780593093924-us.jpg",
+        BookCase: 7,
+        BookCaseFloor: 5,
     },
     {
         Name:"Spencer Goes to School (Spencer the Cat)",
@@ -108,7 +116,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:53.06,
         PreciodeVenta:94,
         StockonHand:5,
-        URL:"https://pictures.abebooks.com/isbn/9781523514892-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781523514892-us.jpg",
+        BookCase: 17,
+        BookCaseFloor: 3,
     },
     {
         Name:"Addition and Subtraction: Use Math to Create 10 Baby Animals! (Learn By Sticker)",
@@ -126,7 +136,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:49.48,
         PreciodeVenta:88,
         StockonHand:25,
-        URL:"https://pictures.abebooks.com/isbn/9781523519781-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781523519781-us.jpg",
+        BookCase: 15,
+        BookCaseFloor: 2
     },
     {
         Name:"A Book About Mom With Words and Pictures by Me",
@@ -144,7 +156,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:53.06,
         PreciodeVenta:94,
         StockonHand:8,
-        URL:"https://pictures.abebooks.com/isbn/9781523512102-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781523512102-us.jpg",
+         BookCase: 3,
+        BookCaseFloor: 5
     },
     {
         Name:"Easter (Paint by Sticker Kids)",
@@ -162,7 +176,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:56.64,
         PreciodeVenta:100,
         StockonHand:3,
-        URL:"https://pictures.abebooks.com/isbn/9781523510429-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781523510429-us.jpg",
+         BookCase: 3,
+        BookCaseFloor: 5
     },
     {
         Name:"The Ultimate Biography of Earth: From the Big Bang to Today!",
@@ -180,7 +196,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:60.22,
         PreciodeVenta:106,
         StockonHand:10,
-        URL:"https://pictures.abebooks.com/isbn/9781523513598-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781523513598-us.jpg",
+         BookCase: 3,
+        BookCaseFloor: 5
     },
     {
         Name:"Alphabet (Learn & Explore)",
@@ -198,7 +216,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:60.22,
         PreciodeVenta:106,
         StockonHand:2,
-        URL:"https://pictures.abebooks.com/isbn/9781684493371-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781684493371-us.jpg",
+         BookCase: 8,
+        BookCaseFloor: 1
     },
     {
         Name:"Time to Explore (Let's Learn)",
@@ -216,7 +236,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:53.06,
         PreciodeVenta:94,
         StockonHand:16,
-        URL:"https://pictures.abebooks.com/isbn/9781645172048-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781645172048-us.jpg",
+        BookCase: 8,
+        BookCaseFloor: 1
     },
     {
         Name:"Adorable Animals (Color Me Creative)",
@@ -234,7 +256,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:53.06,
         PreciodeVenta:94,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781645171737-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781645171737-us.jpg",
+         BookCase: 8,
+        BookCaseFloor: 1
     },
     {
         Name:"On the Go! (Color Me Creative)",
@@ -252,7 +276,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:60.22,
         PreciodeVenta:106,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781645175117-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781645175117-us.jpg",
+         BookCase: 8,
+        BookCaseFloor: 1
     },
     {
         Name:"Unicorns Sticker and Activity Book (Be a Mask Hero!)",
@@ -270,7 +296,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:53.06,
         PreciodeVenta:94,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781645178347-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781645178347-us.jpg",
+            BookCase: 8,
+        BookCaseFloor: 1
     },
     {
         Name:"Moo Lift the Flap (Peek-a-Boo Baby)",
@@ -288,7 +316,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:60.22,
         PreciodeVenta:106,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781645173076-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781645173076-us.jpg",
+        BookCase: 1,
+        BookCaseFloor: 1
     },
     {
         Name:"Mommy, You're the Best! (Special Delivery Books)",
@@ -306,7 +336,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:53.06,
         PreciodeVenta:94,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781684122745-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781684122745-us.jpg",
+        BookCase: 1,
+        BookCaseFloor: 1
     },
     {
         Name:"Hand Art (Little Hands)",
@@ -324,7 +356,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:53.06,
         PreciodeVenta:94,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781645175728-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781645175728-us.jpg",
+        BookCase: 17,
+        BookCaseFloor: 3
     },
     {
         Name:"Haunted Halloween Coloring & Activity Book with Pencil Toppers",
@@ -342,7 +376,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:56.64,
         PreciodeVenta:100,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781645176817-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781645176817-us.jpg",
+        BookCase: 9,
+        BookCaseFloor: 3
     },
     {
         Name:"Brown Bear, Brown Bear, What Do You See? (Slide And Find)",
@@ -360,7 +396,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:60.22,
         PreciodeVenta:106,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9780312509262-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9780312509262-us.jpg",
+         BookCase: 9,
+        BookCaseFloor: 3
     },
     {
         Name:"Little Book of Thanks From Brown Bear and Friends (World of Eric Carle)",
@@ -378,7 +416,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:53.06,
         PreciodeVenta:94,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781250881502-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781250881502-us.jpg",
+            BookCase: 9,
+        BookCaseFloor: 3
     },
     {
         Name:"My First I See You Mirror Book (The World of Eric Carle)",
@@ -396,7 +436,10 @@ export const booksData: Book[] = [
         PrecioDeCoste:53.06,
         PreciodeVenta:94,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781534424548-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781534424548-us.jpg",
+         BookCase: 9,
+        BookCaseFloor: 4
+
     },
     {
         Name:"Croc in Love: A Pop-Up Book",
@@ -414,7 +457,10 @@ export const booksData: Book[] = [
         PrecioDeCoste:53.06,
         PreciodeVenta:94,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9780312529345-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9780312529345-us.jpg",
+         BookCase: 9,
+        BookCaseFloor: 4
+
     },
     {
         Name:"Early Learning Activity Book (Wipe Clean)",
@@ -432,7 +478,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:53.06,
         PreciodeVenta:94,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9780312499228-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9780312499228-us.jpg",
+        BookCase: 9,
+        BookCaseFloor: 4
     },
     {
         Name:"Easter Fun! (Alphaprints)",
@@ -450,7 +498,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:53.06,
         PreciodeVenta:94,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9780312521561-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9780312521561-us.jpg",
+        BookCase: 5,
+        BookCaseFloor: 5
     },
     {
         Name:"Easter on the Farm Seek & Find Flap Book!",
@@ -468,7 +518,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:53.06,
         PreciodeVenta:94,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781684491926-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781684491926-us.jpg",
+        BookCase: 5,
+        BookCaseFloor: 5
     },
     {
         Name:"Fuzzy Friends Valentine 3-Book Box Set (Bear Hugs /Puppy Love /Purrfect Kitty)",
@@ -486,7 +538,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:53.06,
         PreciodeVenta:94,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781684494279-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781684494279-us.jpg",
+        BookCase: 5,
+        BookCaseFloor: 5
     },
     {
         Name:"Look At Me (See, Touch, Feel)",
@@ -504,7 +558,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:60.22,
         PreciodeVenta:106,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781684494255-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781684494255-us.jpg",
+        BookCase: 5,
+        BookCaseFloor: 5
     },
     {
         Name:"Tummy Time (See, Touch, Feel)",
@@ -522,7 +578,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:56.64,
         PreciodeVenta:100,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781684492664-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781684492664-us.jpg",
+        BookCase: 5,
+        BookCaseFloor: 5
     },
     {
         Name:"Love Bugs (Tiny Touch)",
@@ -540,7 +598,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:56.64,
         PreciodeVenta:100,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781638544692-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781638544692-us.jpg",
+        BookCase: 10,
+        BookCaseFloor: 1
     },
     {
         Name:"Farm Touch and Feel Sound Board",
@@ -558,7 +618,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:63.8,
         PreciodeVenta:113,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781638542773-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781638542773-us.jpg",
+        BookCase: 10,
+        BookCaseFloor: 1
     },
     {
         Name:"You and Me",
@@ -576,7 +638,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:49.48,
         PreciodeVenta:88,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781638541646-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781638541646-us.jpg",
+        BookCase: 11,
+        BookCaseFloor: 4
     },
     {
         Name:"Search & Find: Animals Listen & Learn",
@@ -594,7 +658,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:60.22,
         PreciodeVenta:106,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781628858761-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781628858761-us.jpg",
+        BookCase: 11,
+        BookCaseFloor: 4
     },
     {
         Name:"Friendly Faces: A First Book of Friendship and Feelings",
@@ -612,7 +678,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:49.48,
         PreciodeVenta:88,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781647229023-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781647229023-us.jpg",
+        BookCase: 11,
+        BookCaseFloor: 4
     },
     {
         Name:"Letters (Write-On, Wipe-Off Learning Cards)",
@@ -630,7 +698,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:56.64,
         PreciodeVenta:100,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781411463394-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781411463394-us.jpg",
+        BookCase: 3,
+        BookCaseFloor: 5
     },
     {
         Name:"Llama Llama Happy Birthday! (Llama Llama)",
@@ -648,7 +718,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:53.06,
         PreciodeVenta:94,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9780593092903-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9780593092903-us.jpg",
+        BookCase: 12,
+        BookCaseFloor: 2
     },
     {
         Name:"My First Numbers (My Baby & Me)",
@@ -666,7 +738,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:56.64,
         PreciodeVenta:100,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781837716258-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781837716258-us.jpg",
+        BookCase: 12,
+        BookCaseFloor: 2
     },
     {
         Name:"I Can Tie My Own Shoes (I Can)",
@@ -684,7 +758,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:56.64,
         PreciodeVenta:100,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781801054737-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781801054737-us.jpg",
+        BookCase: 12,
+        BookCaseFloor: 2
     },
     {
         Name:"Pocket Full of Sads",
@@ -702,7 +778,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:60.22,
         PreciodeVenta:106,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9780593564561-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9780593564561-us.jpg",
+        BookCase: 12,
+        BookCaseFloor: 3
     },
     {
         Name:"The Magic Hug: A Story About Emotions",
@@ -720,7 +798,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:60.22,
         PreciodeVenta:106,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781910716922-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781910716922-us.jpg",
+        BookCase: 14,
+        BookCaseFloor: 1
     },
     {
         Name:"This Little Light of Mine",
@@ -738,7 +818,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:60.22,
         PreciodeVenta:106,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781419774218-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781419774218-us.jpg",
+        BookCase: 14,
+        BookCaseFloor: 4
     },
     {
         Name:"First Spooky Words",
@@ -756,7 +838,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:53.06,
         PreciodeVenta:94,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781684492367-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781684492367-us.jpg",
+        BookCase: 14,
+        BookCaseFloor: 5
     },
     {
         Name:"My First 1000 Words (Bright Bee)",
@@ -774,7 +858,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:53.06,
         PreciodeVenta:94,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781837717873-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781837717873-us.jpg",
+        BookCase: 13,
+        BookCaseFloor: 2
     },
     {
         Name:"Learn With Me! Colors",
@@ -792,7 +878,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:56.64,
         PreciodeVenta:100,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781912006250-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781912006250-us.jpg",
+        BookCase: 13,
+        BookCaseFloor: 2
     },
     {
         Name:"Peppa's Colorful World (Peppa Pig)",
@@ -810,7 +898,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:53.06,
         PreciodeVenta:94,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9780593118917-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9780593118917-us.jpg",
+        BookCase: 1,
+        BookCaseFloor: 5
     },
     {
         Name:"Kawaii Drawing: Learn to Draw More Than 100 Super Cute Things",
@@ -828,7 +918,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:60.22,
         PreciodeVenta:106,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9780760385340-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9780760385340-us.jpg",
+        BookCase: 1,
+        BookCaseFloor: 5
     },
     {
         Name:"Draw Kawaii Style: A Beginner's Step-by-Step Guide for Drawing Super-Cute Creatures, Whimsical People, and Fun Little Things",
@@ -846,7 +938,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:60.22,
         PreciodeVenta:106,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9780760382448-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9780760382448-us.jpg",
+        BookCase: 7,
+        BookCaseFloor: 2
     },
     {
         Name:"Epic Inventions (Minecraft)",
@@ -864,7 +958,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:60.22,
         PreciodeVenta:106,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9780593497647-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9780593497647-us.jpg",
+        BookCase: 7,
+        BookCaseFloor: 2
     },
     {
         Name:"Master Builds: A Showcase of Breathtaking Creations (Minecraft",
@@ -882,7 +978,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:70.96,
         PreciodeVenta:125,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9780593598993-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9780593598993-us.jpg",
+        BookCase: 6,
+        BookCaseFloor: 5
     },
     {
         Name:"Fight for Dusty Divot (Trapped in Battle Royale, Bk. 5)",
@@ -900,7 +998,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:49.48,
         PreciodeVenta:88,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781510743489-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781510743489-us.jpg",
+        BookCase: 6,
+        BookCaseFloor: 4
     },
     {
         Name:"Yoda (Star Wars)",
@@ -918,7 +1018,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:74.54,
         PreciodeVenta:132,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781302933081-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781302933081-us.jpg",
+        BookCase: 9,
+        BookCaseFloor: 4
     },
     {
         Name:"Solo: A Star Wars Story",
@@ -936,7 +1038,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:63.8,
         PreciodeVenta:113,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781302915728-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781302915728-us.jpg",
+        BookCase: 9,
+        BookCaseFloor: 2
     },
     {
         Name:"Ahsoka vs. Maul (Star Wars: The Clone Wars)",
@@ -954,7 +1058,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:53.06,
         PreciodeVenta:94,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9780736443562-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9780736443562-us.jpg",
+        BookCase: 9,
+        BookCaseFloor: 3
     },
     {
         Name:"Boca Juniors (Soccer Champions)",
@@ -972,7 +1078,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:60.22,
         PreciodeVenta:106,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781608189779-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781608189779-us.jpg",
+        BookCase: 15,
+        BookCaseFloor: 2
     },
     {
         Name:"River Plate (Soccer Champions)",
@@ -990,7 +1098,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:60.22,
         PreciodeVenta:106,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781608189786-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781608189786-us.jpg",
+        BookCase: 11,
+        BookCaseFloor: 5
     },
     {
         Name:"Soccer: The Skills You Need to Play the Ultimate Game",
@@ -1008,7 +1118,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:56.64,
         PreciodeVenta:100,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9780753475478-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9780753475478-us.jpg",
+        BookCase: 10,
+        BookCaseFloor: 5
     },
     {
         Name:"Messi: Life Lessons From a Legend",
@@ -1026,7 +1138,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:56.64,
         PreciodeVenta:100,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781250358790-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781250358790-us.jpg",
+        BookCase: 10,
+        BookCaseFloor: 5
     },
     {
         Name:"The Color of Us: My First Book of Skin Colors",
@@ -1044,7 +1158,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:53.06,
         PreciodeVenta:94,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781803374734-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781803374734-us.jpg",
+        BookCase: 4,
+        BookCaseFloor: 1
     },
     {
         Name:"My First Book of Numbers (The Montessori Method)",
@@ -1062,7 +1178,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:49.48,
         PreciodeVenta:88,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9780593173138-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9780593173138-us.jpg",
+        BookCase: 4,
+        BookCaseFloor: 1
     },
     {
         Name:"Squishy Squashy Pumpkin (Squishy Squashy Books)",
@@ -1080,7 +1198,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:56.64,
         PreciodeVenta:100,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9781789583410-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9781789583410-us.jpg",
+        BookCase: 4,
+        BookCaseFloor: 1
     },
     {
         Name:"Primeras First 100 Palabras Words",
@@ -1098,6 +1218,9 @@ export const booksData: Book[] = [
         PrecioDeCoste:56.64,
         PreciodeVenta:201,
         StockonHand:0,
-        URL:"https://pictures.abebooks.com/isbn/9780312515836-us.jpg"
+        URL:"https://pictures.abebooks.com/isbn/9780312515836-us.jpg",
+        BookCase: 5,
+        BookCaseFloor: 3
     }
+        
 ]

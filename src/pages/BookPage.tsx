@@ -11,6 +11,14 @@ function BookPage({ books }: BookPageProps) {
   const selectedBooks = useBookStore((state) => state.selectedBooks);
   const toggleBook = useBookStore((state) => state.toggleBook);
 
+  if (books.length === 0) {
+    return (
+      <Container className="text-center mt-5">
+        <h2>No hay libros disponibles con los filtros seleccionados</h2>
+      </Container>
+    );
+  }
+
   return (
     <Container>
       <Row>

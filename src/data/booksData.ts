@@ -13,8 +13,10 @@ export interface Book {
     Filter?: string;
     PrecioDeCoste?: number;
     PreciodeVenta: number;
-    StockonHand?: number;
+    StockonHand: number;
     URL: string | "";
+    //BookCase: number; // Estante
+    //BookCaseFloor: number; // Piso
 }
 
 export const booksData: Book[] = [
@@ -33,7 +35,7 @@ export const booksData: Book[] = [
         Filter: "OCBD-2025-07-09",
         PrecioDeCoste: 56.64,
         PreciodeVenta: 100,
-        StockonHand: 0,
+        StockonHand: 5,
         URL: "https://pictures.abebooks.com/isbn/9780063312845-us.jpg"
     },
     {
@@ -51,7 +53,7 @@ export const booksData: Book[] = [
         Filter: "OCBD-2025-07-09",
         PrecioDeCoste: 56.64,
         PreciodeVenta: 100,
-        StockonHand: 0,
+        StockonHand: 1,
         URL: "https://pictures.abebooks.com/isbn/9780063318021-us.jpg"
     },
     {
@@ -69,7 +71,7 @@ export const booksData: Book[] = [
         Filter:"OCBD-2025-07-09",
         PrecioDeCoste:56.64,
         PreciodeVenta:100,
-        StockonHand:0,
+        StockonHand:21,
         URL:"https://pictures.abebooks.com/isbn/9780063318076-us.jpg"
     },
     {
@@ -87,7 +89,7 @@ export const booksData: Book[] = [
         Filter:"OCBD-2025-07-09",
         PrecioDeCoste:53.06,
         PreciodeVenta:94,
-        StockonHand:0,
+        StockonHand:15,
         URL:"https://pictures.abebooks.com/isbn/9780593093924-us.jpg"
     },
     {
@@ -105,7 +107,7 @@ export const booksData: Book[] = [
         Filter:"OCBD-2025-07-09",
         PrecioDeCoste:53.06,
         PreciodeVenta:94,
-        StockonHand:0,
+        StockonHand:5,
         URL:"https://pictures.abebooks.com/isbn/9781523514892-us.jpg"
     },
     {
@@ -123,7 +125,7 @@ export const booksData: Book[] = [
         Filter:"OCBD-2025-07-09",
         PrecioDeCoste:49.48,
         PreciodeVenta:88,
-        StockonHand:0,
+        StockonHand:25,
         URL:"https://pictures.abebooks.com/isbn/9781523519781-us.jpg"
     },
     {
@@ -141,7 +143,7 @@ export const booksData: Book[] = [
         Filter:"OCBD-2025-07-09",
         PrecioDeCoste:53.06,
         PreciodeVenta:94,
-        StockonHand:0,
+        StockonHand:8,
         URL:"https://pictures.abebooks.com/isbn/9781523512102-us.jpg"
     },
     {
@@ -159,7 +161,7 @@ export const booksData: Book[] = [
         Filter:"OCBD-2025-07-09",
         PrecioDeCoste:56.64,
         PreciodeVenta:100,
-        StockonHand:0,
+        StockonHand:3,
         URL:"https://pictures.abebooks.com/isbn/9781523510429-us.jpg"
     },
     {
@@ -177,7 +179,7 @@ export const booksData: Book[] = [
         Filter:"OCBD-2025-07-09",
         PrecioDeCoste:60.22,
         PreciodeVenta:106,
-        StockonHand:0,
+        StockonHand:10,
         URL:"https://pictures.abebooks.com/isbn/9781523513598-us.jpg"
     },
     {
@@ -195,7 +197,7 @@ export const booksData: Book[] = [
         Filter:"OCBD-2025-07-09",
         PrecioDeCoste:60.22,
         PreciodeVenta:106,
-        StockonHand:0,
+        StockonHand:2,
         URL:"https://pictures.abebooks.com/isbn/9781684493371-us.jpg"
     },
     {
@@ -213,7 +215,7 @@ export const booksData: Book[] = [
         Filter:"OCBD-2025-07-09",
         PrecioDeCoste:53.06,
         PreciodeVenta:94,
-        StockonHand:0,
+        StockonHand:16,
         URL:"https://pictures.abebooks.com/isbn/9781645172048-us.jpg"
     },
     {
@@ -1094,7 +1096,7 @@ export const booksData: Book[] = [
         Warehouse:"QUECHUAS",
         Filter:"OCBD-2025-07-09",
         PrecioDeCoste:56.64,
-        PreciodeVenta:100,
+        PreciodeVenta:201,
         StockonHand:0,
         URL:"https://pictures.abebooks.com/isbn/9780312515836-us.jpg"
     }

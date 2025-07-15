@@ -8,12 +8,19 @@ interface BookCardContentProps {
   isSelected: boolean;
 }
 
-
-export function BookCardContentProps({ book, onSelect, isSelected }: BookCardContentProps) {
+export function BookCardContentProps({
+  book,
+  onSelect,
+  isSelected,
+}: BookCardContentProps) {
   return (
     <div
       className={`d-flex flex-row clickable${isSelected ? " selected" : ""}`}
-      style={{ cursor: "pointer", position: "relative", background: isSelected ? "#e3f2fd" : undefined }}
+      style={{
+        cursor: "pointer",
+        position: "relative",
+        background: isSelected ? "#e3f2fd" : undefined,
+      }}
       onClick={() => onSelect(book)}
     >
       <Card.Img
@@ -21,7 +28,8 @@ export function BookCardContentProps({ book, onSelect, isSelected }: BookCardCon
         src={book.URL}
         onError={(e) => {
           e.currentTarget.onerror = null;
-          e.currentTarget.src = "https://placeholder.pics/svg/200x300/DEDEDE/555555/Book";
+          e.currentTarget.src =
+            "https://placeholder.pics/svg/200x300/DEDEDE/555555/Book";
         }}
         className="flex-shrink-0"
         style={{ width: "200px", height: "100%", objectFit: "cover" }}
@@ -36,7 +44,7 @@ export function BookCardContentProps({ book, onSelect, isSelected }: BookCardCon
             right: 8,
             background: "white",
             borderRadius: "50%",
-            zIndex: 2
+            zIndex: 2,
           }}
         />
       )}
@@ -44,12 +52,16 @@ export function BookCardContentProps({ book, onSelect, isSelected }: BookCardCon
         <div className="pb-4">
           <Card.Title className="fw-bold">{book.Name}</Card.Title>
           <Card.Subtitle>{book.Author}</Card.Subtitle>
-          <Card.Text className="description">{book.Description}</Card.Text>
+          <Card.Text>{book.Publisher}</Card.Text>
+          <Card.Text className={`fw-bold${book.StockonHand <= 0 ? "text-danger" : ""}`}>
+            {book.StockonHand <= 0 ? "Sin stock" : `Stock: ${book.StockonHand}`}
+          </Card.Text>
         </div>
         <Card.Footer className="mt-auto fw-bold text-center fs-3">
           S/.{book.PreciodeVenta.toFixed(2)}
         </Card.Footer>
       </Card.Body>
+      
     </div>
   );
 }

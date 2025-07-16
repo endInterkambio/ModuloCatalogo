@@ -20,13 +20,12 @@ function BookPage({ books }: BookPageProps) {
   }
 
   return (
-    <Container>
       <Row>
         {books.map((book: Book) => {
           const isSelected = selectedBooks.some((b) => b.SKU === book.SKU);
           return (
-            <Col key={book.SKU} xs={12} sm={4} md={4} className="p-3">
-              <Card className="d-flex flex-row" style={{ height: "300px" }}>
+            <Col key={book.SKU} xs={12} sm={6} md={6} xxl={4} className="p-3 pt-sm-0">
+              <Card className="d-flex flex-row" style={{ height: "300px"}}>
                 <BookCardContentProps
                   book={book}
                   onSelect={toggleBook}
@@ -37,7 +36,6 @@ function BookPage({ books }: BookPageProps) {
           );
         })}
       </Row>
-    </Container>
   );
 }
 

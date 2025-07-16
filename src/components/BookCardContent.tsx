@@ -31,8 +31,7 @@ export function BookCardContentProps({
           e.currentTarget.src =
             "https://placeholder.pics/svg/200x300/DEDEDE/555555/Book";
         }}
-        className="flex-shrink-0"
-        style={{ width: "200px", height: "100%", objectFit: "cover" }}
+        className="flex-shrink-0 card-image"
       />
       {isSelected && (
         <MdCheckCircle
@@ -57,7 +56,7 @@ export function BookCardContentProps({
             {book.StockonHand <= 0 ? "Sin stock" : `Stock: ${book.StockonHand}`}
           </Card.Text>
         </div>
-        <Card.Footer className="mt-auto fw-bold text-center fs-3">
+        <Card.Footer className="mt-auto fw-bold text-center">
           S/.{book.PreciodeVenta.toFixed(2)}
         </Card.Footer>
       </Card.Body>

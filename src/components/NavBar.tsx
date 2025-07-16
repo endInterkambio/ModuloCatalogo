@@ -12,7 +12,6 @@ function NavBar() {
     <Navbar expand="lg" className="bg-body-tertiary" sticky="top">
       <Container fluid>
         <Navbar.Brand href="#">GusanitoLector</Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
         <Button
           variant="primary"
           onClick={() => generateJsPdfCatalog(selectedBooks)}
@@ -20,7 +19,7 @@ function NavBar() {
         >
           Descargar PDF
         </Button>
-        <Form className="d-flex">
+        <Form className="d-flex pt-3 pt-sm-0">
           <Form.Control
             type="search"
             placeholder="Buscar libro"

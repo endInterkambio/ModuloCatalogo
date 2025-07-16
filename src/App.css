@@ -5,3 +5,40 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+.card-image {
+  width: 200px !important;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 1024px) {
+
+  .card {
+    height: 100% !important;
+  }
+  .card-image {
+    width: 150px !important;
+    height: 100%;
+  }
+
+  .card-title {
+    font-size: 1.2rem !important;
+    flex-wrap: wrap;
+  }
+
+  .card-subtitle {
+    font-size: 1rem !important;
+  }
+
+  .card-text {
+    font-size: 0.9rem !important;
+  }
+
+  .card-footer {
+    font-size: 0.9rem !important;
+  }
+}
+
+
+

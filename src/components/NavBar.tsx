@@ -13,7 +13,7 @@ function NavBar() {
       <Container fluid>
         <Navbar.Brand href="#">GusanitoLector</Navbar.Brand>
         <Button
-          variant="primary"
+          className="btn-custom"
           onClick={() => generateJsPdfCatalog(selectedBooks)}
           disabled={selectedBooks.length === 0}
         >
@@ -26,7 +26,7 @@ function NavBar() {
             className="me-2"
             aria-label="Search"
           />
-          <Button variant="outline-success">Buscar</Button>
+          <Button className="btn-custom">Buscar</Button>
         </Form>
       </Container>
     </Navbar>

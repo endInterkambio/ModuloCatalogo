@@ -1,3 +1,14 @@
+:root {
+  --primary-color: #00ab55;
+  --secondary-color: #fed700;
+}
+
+.btn-custom {
+  background-color: var(--primary-color) !important;
+  font-weight: bold !important;
+  border: none !important;
+}
+
 .description {
   display: -webkit-box;
   -webkit-line-clamp: 3; /* Número de líneas máximas */
@@ -6,10 +17,18 @@
   overflow: hidden;
 }
 
+.card {
+  height: 320px !important;
+}
+
 .card-image {
   width: 200px !important;
   height: 100%;
   object-fit: cover;
+}
+
+.card-footer {
+  font-size: 1.3rem !important;
 }
 
 @media (max-width: 1024px) {

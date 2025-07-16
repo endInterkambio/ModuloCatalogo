@@ -36,12 +36,12 @@ export function BookCardContentProps({
       {isSelected && (
         <MdCheckCircle
           size={32}
-          color="#2196f3"
+          color="#00ab55"
           style={{
             position: "absolute",
             top: 8,
             right: 8,
-            background: "white",
+            background: "#fed700",
             borderRadius: "50%",
             zIndex: 2,
           }}

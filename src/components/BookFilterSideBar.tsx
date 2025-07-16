@@ -1,11 +1,12 @@
 import { Form } from "react-bootstrap";
 import Select, { type SingleValue, type StylesConfig } from "react-select";
+import ActiveFilters from "./ActiveFilters";
 
 // Tipos específicos para evitar conflicto de tipos
 type StringOption = { value: string; label: string };
 type NumberOption = { value: number; label: string };
 
-interface Props {
+export interface FilterProps {
   sortOrder: string;
   setSortOrder: (value: string) => void;
   selectedPrice: SingleValue<StringOption>;
@@ -52,7 +53,7 @@ const BookFilterSidebar = ({
   setSelectedShelf,
   selectedFloor,
   setSelectedFloor,
-}: Props) => {
+}: FilterProps) => {
   const precios: StringOption[] = [
     { value: "0-50", label: "S/. 0 - S/. 50" },
     { value: "51-100", label: "S/. 51 - S/. 100" },
@@ -133,6 +134,18 @@ const BookFilterSidebar = ({
           styles={selectStylesNumber}
         />
       </Form.Group>
+      <ActiveFilters
+        sortOrder={sortOrder}
+        setSortOrder={setSortOrder}
+        selectedPrice={selectedPrice}
+        setSelectedPrice={setSelectedPrice}
+        selectedStock={selectedStock}
+        setSelectedStock={setSelectedStock}
+        selectedShelf={selectedShelf}
+        setSelectedShelf={setSelectedShelf}
+        selectedFloor={selectedFloor}
+        setSelectedFloor={setSelectedFloor}
+      />
     </div>
   );
 };

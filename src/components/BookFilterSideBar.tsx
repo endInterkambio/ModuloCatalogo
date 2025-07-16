@@ -1,4 +1,4 @@
-import { Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import Select from "react-select";
 import { useBookStore } from "@/stores/useBookStore";
 import ActiveFilters from "./ActiveFilters";
@@ -41,6 +41,8 @@ const BookFilterSidebar = () => {
     setSelectedStock,
     setSelectedShelf,
     setSelectedFloor,
+    selectAllBooks,
+    resetSelection,
   } = useBookStore();
 
   return (
@@ -94,8 +96,17 @@ const BookFilterSidebar = () => {
           placeholder="Piso"
         />
       </Form.Group>
-
       <ActiveFilters />
+      <div className="py-3">
+        <Button onClick={selectAllBooks} className="btn-custom">
+          Seleccionar todos los libros
+        </Button>
+      </div>
+      <div>
+        <Button onClick={resetSelection} className="btn-danger">
+          Quitar selección
+        </Button>
+      </div>
     </div>
   );
 };

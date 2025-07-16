@@ -23,7 +23,8 @@ interface BookStore {
   // Selección de libros
   selectedBooks: Book[];
   toggleBook: (book: Book) => void;
-  resetBook: () => void;
+  selectAllBooks: () => void;
+  resetSelection: () => void;
 
   // Setters
   setSearchTerm: (term: string) => void;
@@ -63,7 +64,8 @@ export const useBookStore = create<BookStore>((set, get) => ({
       set({ selectedBooks: [...selectedBooks, book] });
     }
   },
-  resetBook: () => set({ selectedBooks: [] }),
+  resetSelection: () => set({ selectedBooks: [] }),
+  selectAllBooks: () => set({ selectedBooks: get().filteredBooks }),
 
   // setters con filtros reactivos
   setSearchTerm: (term) => {

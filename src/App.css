@@ -13,6 +13,11 @@
   border: none !important;
 }
 
+.btn-custom:hover {
+  background-color: var(--secondary-color) !important;
+  color: #000 !important;
+}
+
 .description {
   display: -webkit-box;
   -webkit-line-clamp: 3; /* Número de líneas máximas */

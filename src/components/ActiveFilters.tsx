@@ -1,5 +1,6 @@
 import { FiX } from "react-icons/fi";
 import { useBookStore } from "@/stores/useBookStore";
+import { Button } from "react-bootstrap";
 
 const ActiveFilters = () => {
   const {
@@ -16,7 +17,11 @@ const ActiveFilters = () => {
   } = useBookStore();
 
   const hasFilters =
-    sortOrder || selectedPrice || selectedStock || selectedShelf || selectedFloor;
+    sortOrder ||
+    selectedPrice ||
+    selectedStock ||
+    selectedShelf ||
+    selectedFloor;
 
   if (!hasFilters) return null;
 
@@ -65,9 +70,8 @@ const ActiveFilters = () => {
             </span>
           )}
         </div>
-
-        <button
-          className="btn btn-sm btn-outline-danger mt-2"
+        <Button
+          className="btn-danger"
           onClick={() => {
             setSortOrder("");
             setSelectedPrice(null);
@@ -77,7 +81,7 @@ const ActiveFilters = () => {
           }}
         >
           Limpiar todos los filtros
-        </button>
+        </Button>
       </div>
     </>
   );

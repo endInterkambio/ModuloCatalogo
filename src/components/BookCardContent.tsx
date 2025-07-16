@@ -20,6 +20,7 @@ export function BookCardContentProps({
         cursor: "pointer",
         position: "relative",
         background: isSelected ? "#e3f2fd" : undefined,
+        width: "100%",
       }}
       onClick={() => onSelect(book)}
     >

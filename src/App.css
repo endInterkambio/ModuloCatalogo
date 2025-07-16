@@ -3,6 +3,10 @@
   --secondary-color: #fed700;
 }
 
+.transition-opacity {
+  transition: opacity 0.3s ease-in-out;
+}
+
 .btn-custom {
   background-color: var(--primary-color) !important;
   font-weight: bold !important;
@@ -30,6 +34,28 @@
 .card-footer {
   font-size: 1.3rem !important;
 }
+
+.custom-pagination {
+  --bs-pagination-color: #333 !important;
+  --bs-pagination-bg: #f8f9fa !important;
+  --bs-pagination-border-color: #ccc !important;
+  --bs-pagination-hover-color: #fff !important;
+  --bs-pagination-hover-bg: var(--primary-color) !important;
+  --bs-pagination-hover-border-color: var(--primary-color) !important;
+  --bs-pagination-focus-color: #fff !important;
+  --bs-pagination-focus-bg: var(--primary-color) !important;
+  --bs-pagination-focus-box-shadow: none ;
+  --bs-pagination-active-color: #fff !important;
+  --bs-pagination-active-bg: var(--primary-color) !important;
+  --bs-pagination-active-border-color: var(--primary-color) !important;
+}
+
+.custom-page-item {
+  border-radius: 6px !important;
+  margin: 0 2px;
+  font-weight: 500;
+}
+
 
 @media (max-width: 1024px) {
 

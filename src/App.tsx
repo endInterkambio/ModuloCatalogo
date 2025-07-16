@@ -1,12 +1,12 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import NavBar from "@components/NavBar";
 import ProductListPage from "@components/ProductListPage";
+import NavBarComponent from "@components/NavBarComponent";
 
 function App() {
   return (
     <>
-      <NavBar />
+      <NavBarComponent />
       <ProductListPage />
     </>
   );

@@ -1,29 +1,27 @@
 import { useBookStore } from "@/stores/useBookStore";
-import { booksData } from "@/data/booksData";
-import { filterBooks } from "@/utils/filterBooks";
 import BookPage from "@/pages/BookPage";
 import BookFilterSidebar from "./BookFilterSideBar";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Pagination } from "react-bootstrap";
+
+const ITEMS_PER_PAGE = 9;
 
 const ProductListPage = () => {
   const {
-    sortOrder,
-    selectedPrice,
-    selectedStock,
-    selectedShelf,
-    selectedFloor,
-    searchTerm,
+    filteredBooks,
+    currentPage,
+    setCurrentPage,
   } = useBookStore();
 
-  const filteredBooks = filterBooks({
-    data: booksData,
-    sortOrder,
-    selectedPrice,
-    selectedStock,
-    selectedShelf,
-    selectedFloor,
-    searchTerm,
-  });
+  const totalPages = Math.ceil(filteredBooks.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const booksToDisplay = filteredBooks.slice(startIndex, endIndex);
+
+  const handlePageChange = (page: number) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
 
   return (
     <Container fluid>
@@ -32,7 +30,31 @@ const ProductListPage = () => {
           <BookFilterSidebar />
         </Col>
         <Col xs={12} md={9} lg={10} className="p-4">
-          <BookPage books={filteredBooks} />
+          <BookPage books={booksToDisplay} />
+
+          {totalPages > 1 && (
+            <Pagination className="custom-pagination mt-4 d-flex justify-content-center flex-wrap">
+              <Pagination.First onClick={() => handlePageChange(1)} disabled={currentPage === 1} />
+              <Pagination.Prev onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} />
+
+              {Array.from({ length: totalPages }).map((_, index) => {
+                const page = index + 1;
+                return (
+                  <Pagination.Item
+                    key={page}
+                    className="custom-page-item"
+                    active={page === currentPage}
+                    onClick={() => handlePageChange(page)}
+                  >
+                    {page}
+                  </Pagination.Item>
+                );
+              })}
+
+              <Pagination.Next onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} />
+              <Pagination.Last onClick={() => handlePageChange(totalPages)} disabled={currentPage === totalPages} />
+            </Pagination>
+          )}
         </Col>
       </Row>
     </Container>

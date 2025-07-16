@@ -10,6 +10,7 @@ type NumberOption = { value: number; label: string };
 interface BookStore {
   books: Book[];
   filteredBooks: Book[];
+  currentPage: number;
 
   // Filtros
   searchTerm: string;
@@ -31,6 +32,7 @@ interface BookStore {
   setSelectedStock: (value: SingleValue<StringOption>) => void;
   setSelectedShelf: (value: SingleValue<NumberOption>) => void;
   setSelectedFloor: (value: SingleValue<NumberOption>) => void;
+  setCurrentPage: (page: number) => void;
 
   // Core
   applyFilters: () => void;
@@ -39,6 +41,8 @@ interface BookStore {
 export const useBookStore = create<BookStore>((set, get) => ({
   books: booksData,
   filteredBooks: booksData,
+  currentPage: 1,
+  setCurrentPage: (page) => set({ currentPage: page }),
 
   // filtros
   searchTerm: "",

@@ -7,6 +7,8 @@ import { generateJsPdfCatalog } from "./DynamicPdfDocument";
 
 function NavBar() {
   const selectedBooks = useBookStore((state) => state.selectedBooks);
+  const searchTerm = useBookStore((state) => state.searchTerm);
+  const setSearchTerm = useBookStore((state) => state.setSearchTerm);
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary" sticky="top">
@@ -22,11 +24,19 @@ function NavBar() {
         <Form className="d-flex pt-3 pt-sm-0">
           <Form.Control
             type="search"
-            placeholder="Buscar libro"
+            placeholder="Nombre o ISBN"
             className="me-2"
             aria-label="Search"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <Button className="btn-custom">Buscar</Button>
+          <Button
+            className="btn-custom"
+            type="submit"
+            onClick={(e) => e.preventDefault()}
+          >
+            Buscar
+          </Button>
         </Form>
       </Container>
     </Navbar>

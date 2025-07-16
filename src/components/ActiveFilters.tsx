@@ -1,24 +1,22 @@
 import { FiX } from "react-icons/fi";
-import type { FilterProps } from "./BookFilterSideBar";
+import { useBookStore } from "@/stores/useBookStore";
 
-const ActiveFilters = ({
-  sortOrder,
-  setSortOrder,
-  selectedPrice,
-  setSelectedPrice,
-  selectedStock,
-  setSelectedStock,
-  selectedShelf,
-  setSelectedShelf,
-  selectedFloor,
-  setSelectedFloor,
-}: FilterProps) => {
+const ActiveFilters = () => {
+  const {
+    sortOrder,
+    selectedPrice,
+    selectedStock,
+    selectedShelf,
+    selectedFloor,
+    setSortOrder,
+    setSelectedPrice,
+    setSelectedStock,
+    setSelectedShelf,
+    setSelectedFloor,
+  } = useBookStore();
+
   const hasFilters =
-    sortOrder ||
-    selectedPrice ||
-    selectedStock ||
-    selectedShelf ||
-    selectedFloor;
+    sortOrder || selectedPrice || selectedStock || selectedShelf || selectedFloor;
 
   if (!hasFilters) return null;
 

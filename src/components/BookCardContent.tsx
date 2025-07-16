@@ -52,7 +52,10 @@ export function BookCardContentProps({
           <Card.Title className="fw-bold">{book.Name}</Card.Title>
           <Card.Subtitle>{book.Author}</Card.Subtitle>
           <Card.Text>{book.Publisher}</Card.Text>
-          <Card.Text className={`fw-bold${book.StockonHand <= 0 ? "text-danger" : ""}`}>
+          <Card.Text className="text-muted">ISBN: {book.ISBN}</Card.Text>
+          <Card.Text
+            className={`fw-bold${book.StockonHand <= 0 ? "text-danger" : ""}`}
+          >
             {book.StockonHand <= 0 ? "Sin stock" : `Stock: ${book.StockonHand}`}
           </Card.Text>
         </div>
@@ -60,7 +63,6 @@ export function BookCardContentProps({
           S/.{book.PreciodeVenta.toFixed(2)}
         </Card.Footer>
       </Card.Body>
-      
     </div>
   );
 }

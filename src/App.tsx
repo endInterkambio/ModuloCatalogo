@@ -1,13 +1,13 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "@components/NavBar";
-import FilterSidebar from "@components/FilterSidebar";
+import ProductListPage from "@components/ProductListPage";
 
 function App() {
   return (
     <>
       <NavBar />
-      <FilterSidebar />
+      <ProductListPage />
     </>
   );
 }

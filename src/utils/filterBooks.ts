@@ -8,6 +8,7 @@ export function filterBooks({
   selectedStock,
   selectedShelf,
   selectedFloor,
+  searchTerm,
 }: {
   data: Book[];
   sortOrder: string;
@@ -15,8 +16,27 @@ export function filterBooks({
   selectedStock: SingleValue<{ value: string; label: string }>;
   selectedShelf: SingleValue<{ value: number; label: string }>;
   selectedFloor: SingleValue<{ value: number; label: string }>;
+  searchTerm?: string;
 }): Book[] {
   let filtered = [...data];
+
+  // 🔍 Búsqueda por título o autor
+  if (searchTerm && searchTerm.trim() !== "") {
+    const lowerSearch = searchTerm.toLowerCase();
+    const isNumeric = /^\d+$/.test(searchTerm); 
+
+    filtered = filtered.filter(
+      (book) => {
+        const matchesText =
+        book.Name?.toLowerCase().includes(lowerSearch) ||
+        book.Author?.toLowerCase().includes(lowerSearch);
+
+        const matchesNumber = isNumeric && (book.ISBN?.toString().includes(searchTerm))
+
+        return matchesText || matchesNumber;
+      }
+    );
+  }
 
   // Filtro por precio
   if (selectedPrice) {

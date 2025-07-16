@@ -12,7 +12,8 @@ export const generateJsPdfCatalog = async (books: Book[]) => {
 
   const columnCount = 3;
   const gap = 5;
-  const cardWidth = (pageWidth - margin * 2 - gap * (columnCount - 1)) / columnCount;
+  const cardWidth =
+    (pageWidth - margin * 2 - gap * (columnCount - 1)) / columnCount;
   const cardHeight = 85;
   const imageHeight = 50;
 
@@ -22,7 +23,9 @@ export const generateJsPdfCatalog = async (books: Book[]) => {
   // Título
   doc.setFont("helvetica", "bold");
   doc.setFontSize(18);
-  doc.text("Catálogo de libros", pageWidth / 2, margin + 2, { align: "center" });
+  doc.text("Catálogo de libros", pageWidth / 2, margin + 2, {
+    align: "center",
+  });
 
   for (let i = 0; i < books.length; i++) {
     const book = books[i];
@@ -53,10 +56,19 @@ export const generateJsPdfCatalog = async (books: Book[]) => {
 
     // Imagen
     if (imageDataUrl) {
-      doc.addImage(imageDataUrl, "JPEG", x + 5, y + 5, cardWidth - 10, imageHeight);
+      doc.addImage(
+        imageDataUrl,
+        "JPEG",
+        x + 5,
+        y + 5,
+        cardWidth - 10,
+        imageHeight
+      );
     } else {
       doc.setFontSize(10);
-      doc.text("Sin imagen", x + cardWidth / 2, y + imageHeight / 2, { align: "center" });
+      doc.text("Sin imagen", x + cardWidth / 2, y + imageHeight / 2, {
+        align: "center",
+      });
     }
 
     // Texto
@@ -66,18 +78,19 @@ export const generateJsPdfCatalog = async (books: Book[]) => {
     doc.setFontSize(9);
     doc.setTextColor(0);
 
-    const wrapText = (text: string) => doc.splitTextToSize(text, cardWidth - 10);
+    const wrapText = (text: string) =>
+      doc.splitTextToSize(text, cardWidth - 10);
 
     doc.text(wrapText(book.Name), textLeft, textY);
     textY += 12;
 
-    doc.text(`Autor: ${book.Author}`, textLeft, textY);
+    doc.text(`${book.Author}`, textLeft, textY);
     textY += 3;
 
-    doc.text(`Editorial: ${book.Publisher ?? "N/A"}`, textLeft, textY);
+    doc.text(`${book.Publisher ?? "N/A"}`, textLeft, textY);
     textY += 8;
 
-    doc.setTextColor(33, 150, 243);
+    doc.setTextColor(0, 171, 85); // Green
     doc.setFont("helvetica", "bold");
     doc.setFontSize(16);
     doc.text(`S/. ${book.PreciodeVenta.toFixed(2)}`, textLeft, textY);

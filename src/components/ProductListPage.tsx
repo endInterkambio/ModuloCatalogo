@@ -6,11 +6,7 @@ import { Container, Row, Col, Pagination } from "react-bootstrap";
 const ITEMS_PER_PAGE = 9;
 
 const ProductListPage = () => {
-  const {
-    filteredBooks,
-    currentPage,
-    setCurrentPage,
-  } = useBookStore();
+  const { filteredBooks, currentPage, setCurrentPage } = useBookStore();
 
   const totalPages = Math.ceil(filteredBooks.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
@@ -34,8 +30,14 @@ const ProductListPage = () => {
 
           {totalPages > 1 && (
             <Pagination className="custom-pagination mt-4 d-flex justify-content-center flex-wrap">
-              <Pagination.First onClick={() => handlePageChange(1)} disabled={currentPage === 1} />
-              <Pagination.Prev onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} />
+              <Pagination.First
+                onClick={() => handlePageChange(1)}
+                disabled={currentPage === 1}
+              />
+              <Pagination.Prev
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+              />
 
               {Array.from({ length: totalPages }).map((_, index) => {
                 const page = index + 1;
@@ -51,8 +53,17 @@ const ProductListPage = () => {
                 );
               })}
 
-              <Pagination.Next onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} />
-              <Pagination.Last onClick={() => handlePageChange(totalPages)} disabled={currentPage === totalPages} />
+              <Pagination.Next
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+              />
+              <Pagination.Last
+                onClick={() => handlePageChange(totalPages)}
+                disabled={currentPage === totalPages}
+              />
+              <div className="text-center my-auto px-3">
+                <span>Mostrando {booksToDisplay.length} resultados</span>
+              </div>
             </Pagination>
           )}
         </Col>

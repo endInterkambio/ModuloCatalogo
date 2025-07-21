@@ -42,6 +42,8 @@ const BookFilterSidebar = () => {
     setSelectedShelf,
     setSelectedFloor,
     selectAllBooks,
+    selectCurrentPageBooks,
+    resetCurrentPageSelection,
     resetSelection,
   } = useBookStore();
 
@@ -98,13 +100,23 @@ const BookFilterSidebar = () => {
       </Form.Group>
       <ActiveFilters />
       <div className="py-3">
-        <Button onClick={selectAllBooks} className="btn-custom">
-          Seleccionar todos los libros
+        <Button onClick={selectCurrentPageBooks} className="btn-custom">
+          Seleccionar vista actual
         </Button>
       </div>
-      <div>
+      <div className="py-3">
+        <Button onClick={resetCurrentPageSelection} className="btn-danger">
+          Deseleccionar vista actual
+        </Button>
+      </div>
+      <div className="py-3">
+        <Button onClick={selectAllBooks} className="btn-custom">
+          Seleccionar todos los resultados
+        </Button>
+      </div>
+      <div className="py-3">
         <Button onClick={resetSelection} className="btn-danger">
-          Quitar selección
+          Quitar toda la selección
         </Button>
       </div>
     </div>

@@ -24,7 +24,9 @@ interface BookStore {
   selectedBooks: Book[];
   toggleBook: (book: Book) => void;
   selectAllBooks: () => void;
+  selectCurrentPageBooks: () => void;
   resetSelection: () => void;
+  resetCurrentPageSelection: () => void;
 
   // Setters
   setSearchTerm: (term: string) => void;
@@ -53,7 +55,7 @@ export const useBookStore = create<BookStore>((set, get) => ({
   selectedShelf: null,
   selectedFloor: null,
 
-  // selección
+  // Selección
   selectedBooks: [],
   toggleBook: (book) => {
     const selectedBooks = get().selectedBooks;
@@ -65,7 +67,38 @@ export const useBookStore = create<BookStore>((set, get) => ({
     }
   },
   resetSelection: () => set({ selectedBooks: [] }),
+  resetCurrentPageSelection: () => {
+    const { filteredBooks, currentPage, selectedBooks } = get();
+    const ITEMS_PER_PAGE = 12;
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    const end = start + ITEMS_PER_PAGE;
+
+    const currentPageBooks = filteredBooks.slice(start, end);
+    const remainingBooks = selectedBooks.filter(
+      (book) => !currentPageBooks.some((b) => b.SKU === book.SKU)
+    );
+
+    set({ selectedBooks: remainingBooks });
+  },
   selectAllBooks: () => set({ selectedBooks: get().filteredBooks }),
+  selectCurrentPageBooks: () => {
+    const { filteredBooks, currentPage, selectedBooks } = get();
+    const ITEMS_PER_PAGE = 12;
+
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    const end = start + ITEMS_PER_PAGE;
+    const currentPageBooks = filteredBooks.slice(start, end);
+
+    // Evita duplicados usando el SKU como identificador
+    const newSelection = [
+      ...selectedBooks,
+      ...currentPageBooks.filter(
+        (book) => !selectedBooks.some((b) => b.SKU === book.SKU)
+      ),
+    ];
+
+    set({ selectedBooks: newSelection });
+  },
 
   // setters con filtros reactivos
   setSearchTerm: (term) => {

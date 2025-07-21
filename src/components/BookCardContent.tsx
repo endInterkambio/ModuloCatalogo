@@ -1,6 +1,7 @@
 import { Card } from "react-bootstrap";
 import { MdCheckCircle } from "react-icons/md";
 import { type Book } from "@/data/booksData";
+import imagePlaceholder from "@/assets/no-image.jpg";
 
 interface BookCardContentProps {
   book: Book;
@@ -29,8 +30,7 @@ export function BookCardContentProps({
         src={book.ImageUrl}
         onError={(e) => {
           e.currentTarget.onerror = null;
-          e.currentTarget.src =
-            "https://placeholder.pics/svg/200x300/DEDEDE/555555/Book";
+          e.currentTarget.src = imagePlaceholder;
         }}
         className="flex-shrink-0 card-image"
       />

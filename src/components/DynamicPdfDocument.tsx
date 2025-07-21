@@ -1,5 +1,6 @@
 import jsPDF from "jspdf";
 import { type Book } from "@/data/booksData";
+import imagePlaceholder from "@assets/no-image.jpg";
 
 /**
  * Genera un catálogo PDF de libros con diseño 3 columnas por fila.
@@ -71,6 +72,106 @@ export const generateJsPdfCatalog = async (books: Book[]) => {
     return wrappedLines;
   };
 
+  type FitMode = "cover" | "contain";
+
+  const addBookImage = async (
+    doc: jsPDF,
+    imageDataUrl: string,
+    x: number,
+    y: number,
+    cardWidth: number,
+    imageHeight: number,
+    fitMode: FitMode = "cover" // 👈 por defecto 'cover'
+  ) => {
+    return new Promise<void>((resolve) => {
+      const img = new Image();
+      img.src = imageDataUrl;
+
+      img.onload = () => {
+        const targetWidth = cardWidth - 10;
+        const targetHeight = imageHeight;
+
+        const imgWidth = img.width;
+        const imgHeight = img.height;
+        const imgAspect = imgWidth / imgHeight;
+        const targetAspect = targetWidth / targetHeight;
+
+        if (fitMode === "cover") {
+          // Recorte para llenar el espacio completo
+          let sx = 0,
+            sy = 0,
+            sWidth = imgWidth,
+            sHeight = imgHeight;
+
+          if (imgAspect > targetAspect) {
+            sWidth = imgHeight * targetAspect;
+            sx = (imgWidth - sWidth) / 2;
+          } else {
+            sHeight = imgWidth / targetAspect;
+            sy = (imgHeight - sHeight) / 2;
+          }
+
+          const canvas = document.createElement("canvas");
+          const scale = 3;
+          canvas.width = targetWidth * scale;
+          canvas.height = targetHeight * scale;
+          const ctx = canvas.getContext("2d");
+
+          if (ctx) {
+            ctx.drawImage(
+              img,
+              sx,
+              sy,
+              sWidth,
+              sHeight,
+              0,
+              0,
+              canvas.width,
+              canvas.height
+            );
+
+            const highResDataUrl = canvas.toDataURL("image/jpeg", 0.95);
+            doc.addImage(
+              highResDataUrl,
+              "JPEG",
+              x + 5,
+              y + 3,
+              targetWidth,
+              targetHeight
+            );
+          }
+        } else if (fitMode === "contain") {
+          // Redimensiona manteniendo todo el contenido visible
+          let drawWidth = targetWidth;
+          let drawHeight = targetWidth / imgAspect;
+
+          // Si el alto excede el área disponible, ajustar a alto máximo
+          if (drawHeight > targetHeight) {
+            drawHeight = targetHeight;
+            drawWidth = drawHeight * imgAspect;
+          }
+
+          // Centrar horizontal y verticalmente
+          const offsetX = x + 5 + (targetWidth - drawWidth) / 2;
+          const offsetY = y + 3 + (targetHeight - drawHeight) / 2;
+
+          doc.addImage(
+            imageDataUrl,
+            "JPEG",
+            offsetX,
+            offsetY,
+            drawWidth,
+            drawHeight
+          );
+        }
+
+        resolve();
+      };
+
+      img.onerror = () => resolve();
+    });
+  };
+
   // Título
   doc.setFont("helvetica", "bold");
   doc.setFontSize(18);
@@ -105,22 +206,15 @@ export const generateJsPdfCatalog = async (books: Book[]) => {
     doc.setFillColor(255, 255, 255);
     doc.rect(x, y, cardWidth, cardHeight, "FD");
 
-    // Imagen
-    if (imageDataUrl) {
-      doc.addImage(
-        imageDataUrl,
-        "JPEG",
-        x + 5,
-        y + 3,
-        cardWidth - 10,
-        imageHeight
-      );
-    } else {
-      doc.setFontSize(10);
-      doc.text("Sin imagen", x + cardWidth / 2, y + imageHeight / 2, {
-        align: "center",
-      });
-    }
+    await addBookImage(
+      doc,
+      imageDataUrl ? imageDataUrl : imagePlaceholder,
+      x,
+      y,
+      cardWidth,
+      imageHeight,
+      "contain"
+    );
 
     // Texto
     let textY = y + imageHeight + 10;

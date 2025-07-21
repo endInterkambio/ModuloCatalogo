@@ -42,7 +42,8 @@
 .card-image {
   width: 200px !important;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  padding-left: 10px;
 }
 
 .card-footer {

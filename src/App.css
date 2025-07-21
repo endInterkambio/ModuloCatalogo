@@ -3,6 +3,23 @@
   --secondary-color: #fed700;
 }
 
+/* 
+ * Global Variables
+ * ========================================
+ */
+
+/* 
+ * Global Transitions and Animations
+ * ========================================
+ */
+.transition-opacity {
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* 
+ * Text Truncation Styles
+ * ========================================
+ */
 .text-ellipsis {
   display: -webkit-box;
   -webkit-line-clamp: 3; /* Número de líneas */
@@ -12,10 +29,10 @@
   text-overflow: ellipsis;
 }
 
-.transition-opacity {
-  transition: opacity 0.3s ease-in-out;
-}
-
+/* 
+ * Button Styles
+ * ========================================
+ */
 .btn-custom {
   background-color: var(--primary-color) !important;
   font-weight: bold !important;
@@ -27,14 +44,10 @@
   color: #000 !important;
 }
 
-.description {
-  display: -webkit-box;
-  -webkit-line-clamp: 3; /* Número de líneas máximas */
-  line-clamp: 3; /* Número de líneas máximas */
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
+/* 
+ * Card Component Styles
+ * ========================================
+ */
 .card {
   height: 320px !important;
 }
@@ -50,6 +63,10 @@
   font-size: 1.3rem !important;
 }
 
+/* 
+ * Pagination Styles
+ * ========================================
+ */
 .custom-pagination {
   --bs-pagination-color: #333 !important;
   --bs-pagination-bg: #f8f9fa !important;
@@ -59,7 +76,7 @@
   --bs-pagination-hover-border-color: var(--primary-color) !important;
   --bs-pagination-focus-color: #fff !important;
   --bs-pagination-focus-bg: var(--primary-color) !important;
-  --bs-pagination-focus-box-shadow: none ;
+  --bs-pagination-focus-box-shadow: none;
   --bs-pagination-active-color: #fff !important;
   --bs-pagination-active-bg: var(--primary-color) !important;
   --bs-pagination-active-border-color: var(--primary-color) !important;
@@ -71,9 +88,15 @@
   font-weight: 500;
 }
 
-
+/* 
+ * Responsive Design Styles
+ * ========================================
+ */
 @media (max-width: 1024px) {
-
+  /* 
+ * Card Component Styles
+ * ========================================
+ */
   .card {
     height: 100% !important;
   }
@@ -100,6 +123,3 @@
     font-size: 0.9rem !important;
   }
 }
-
-
-

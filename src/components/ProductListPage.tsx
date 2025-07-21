@@ -1,7 +1,8 @@
 import { useBookStore } from "@/stores/useBookStore";
 import BookPage from "@/pages/BookPage";
 import BookFilterSidebar from "./BookFilterSideBar";
-import { Container, Row, Col, Pagination } from "react-bootstrap";
+import { Container, Row, Col} from "react-bootstrap";
+import SmartPagination from "./SmartPagination";
 
 const ITEMS_PER_PAGE = 12;
 
@@ -29,42 +30,16 @@ const ProductListPage = () => {
           <BookPage books={booksToDisplay} />
 
           {totalPages > 1 && (
-            <Pagination className="custom-pagination mt-4 d-flex justify-content-center flex-wrap">
-              <Pagination.First
-                onClick={() => handlePageChange(1)}
-                disabled={currentPage === 1}
+            <>
+              <SmartPagination
+                totalPages={totalPages}
+                currentPage={currentPage}
+                onPageChange={handlePageChange}
               />
-              <Pagination.Prev
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-              />
-
-              {Array.from({ length: totalPages }).map((_, index) => {
-                const page = index + 1;
-                return (
-                  <Pagination.Item
-                    key={page}
-                    className="custom-page-item"
-                    active={page === currentPage}
-                    onClick={() => handlePageChange(page)}
-                  >
-                    {page}
-                  </Pagination.Item>
-                );
-              })}
-
-              <Pagination.Next
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
-              />
-              <Pagination.Last
-                onClick={() => handlePageChange(totalPages)}
-                disabled={currentPage === totalPages}
-              />
-              <div className="text-center my-auto px-3">
-                <span>Mostrando {booksToDisplay.length} resultados</span>
+              <div className="text-center mt-2">
+                Mostrando {booksToDisplay.length} resultados
               </div>
-            </Pagination>
+            </>
           )}
         </Col>
       </Row>

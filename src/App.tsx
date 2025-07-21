@@ -1,4 +1,4 @@
-import "./App.css";
+import "@/App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ProductListPage from "@components/ProductListPage";
 import NavBarComponent from "@components/NavBarComponent";

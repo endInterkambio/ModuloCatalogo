@@ -1,5 +1,5 @@
-import type { Book } from "@/data/booksData";
 import type { SingleValue } from "react-select";
+import type { Book } from "@/data/booksData";
 
 export function filterBooks({
   data,

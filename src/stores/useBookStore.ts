@@ -1,8 +1,8 @@
 // stores/useBookStore.ts
 import { create } from "zustand";
+import { type SingleValue } from "react-select";
 import { booksData, type Book } from "@/data/booksData";
 import { filterBooks } from "@/utils/filterBooks";
-import { type SingleValue } from "react-select";
 
 type StringOption = { value: string; label: string };
 type NumberOption = { value: number; label: string };

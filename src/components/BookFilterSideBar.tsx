@@ -1,7 +1,7 @@
 import { Button, Form } from "react-bootstrap";
 import Select from "react-select";
 import { useBookStore } from "@/stores/useBookStore";
-import ActiveFilters from "./ActiveFilters";
+import ActiveFilters from "@components/ActiveFilters";
 
 // Opciones
 const precios = [

@@ -1,6 +1,6 @@
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { BookCardContentProps } from "@components/BookCardContent";
-import { type Book } from "data/booksData";
+import { type Book } from "@/data/booksData";
 import { useBookStore } from "@/stores/useBookStore";
 
 type BookPageProps = {

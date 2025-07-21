@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Navbar from "react-bootstrap/Navbar";
 import { useBookStore } from "@/stores/useBookStore";
-import { generateJsPdfCatalog } from "./DynamicPdfDocument";
+import { generateJsPdfCatalog } from "@/components/DynamicPdfDocument";
 import { useEffect, useState } from "react";
 
 function NavBarComponent() {

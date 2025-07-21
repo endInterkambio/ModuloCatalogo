@@ -1,8 +1,8 @@
 import { useBookStore } from "@/stores/useBookStore";
 import BookPage from "@/pages/BookPage";
-import BookFilterSidebar from "./BookFilterSideBar";
+import BookFilterSidebar from "@/components/BookFilterSideBar";
 import { Container, Row, Col} from "react-bootstrap";
-import SmartPagination from "./SmartPagination";
+import SmartPagination from "@/components/SmartPagination";
 
 const ITEMS_PER_PAGE = 12;
 

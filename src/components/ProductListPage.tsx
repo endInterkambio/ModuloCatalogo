@@ -3,7 +3,7 @@ import BookPage from "@/pages/BookPage";
 import BookFilterSidebar from "./BookFilterSideBar";
 import { Container, Row, Col, Pagination } from "react-bootstrap";
 
-const ITEMS_PER_PAGE = 9;
+const ITEMS_PER_PAGE = 12;
 
 const ProductListPage = () => {
   const { filteredBooks, currentPage, setCurrentPage } = useBookStore();

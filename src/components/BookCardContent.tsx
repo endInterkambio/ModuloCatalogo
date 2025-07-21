@@ -26,7 +26,7 @@ export function BookCardContentProps({
     >
       <Card.Img
         variant="top"
-        src={book.URL}
+        src={book.ImageUrl}
         onError={(e) => {
           e.currentTarget.onerror = null;
           e.currentTarget.src =
@@ -50,18 +50,18 @@ export function BookCardContentProps({
       )}
       <Card.Body className="d-flex flex-column flex-grow-1">
         <div className="pb-4">
-          <Card.Title className="fw-bold">{book.Name}</Card.Title>
-          <Card.Subtitle>{book.Author}</Card.Subtitle>
+          <Card.Title className="fw-bold text-ellipsis">{book.ItemName}</Card.Title>
+          <Card.Subtitle className="text-ellipsis">{book.Author}</Card.Subtitle>
           <Card.Text>{book.Publisher}</Card.Text>
           <Card.Text className="text-muted">ISBN: {book.ISBN}</Card.Text>
           <Card.Text
-            className={`fw-bold${book.StockonHand <= 0 ? "text-danger" : ""}`}
+            className={`fw-bold${book.StockOnHand <= 0 ? "text-danger" : ""}`}
           >
-            {book.StockonHand <= 0 ? "Sin stock" : `Stock: ${book.StockonHand}`}
+            {book.StockOnHand <= 0 ? "Sin stock" : `Stock: ${book.StockOnHand}`}
           </Card.Text>
         </div>
         <Card.Footer className="mt-auto fw-bold text-center">
-          S/.{book.PreciodeVenta.toFixed(2)}
+          S/.{book.SellingPrice.toFixed(2)}
         </Card.Footer>
       </Card.Body>
     </div>

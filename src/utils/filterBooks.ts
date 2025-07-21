@@ -28,7 +28,7 @@ export function filterBooks({
     filtered = filtered.filter(
       (book) => {
         const matchesText =
-        book.Name?.toLowerCase().includes(lowerSearch) ||
+        book.ItemName?.toLowerCase().includes(lowerSearch) ||
         book.Author?.toLowerCase().includes(lowerSearch);
 
         const matchesNumber = isNumeric && (book.ISBN?.toString().includes(searchTerm))
@@ -44,7 +44,7 @@ export function filterBooks({
       ? [parseInt(selectedPrice.value), Infinity]
       : selectedPrice.value.split("-").map(Number);
     filtered = filtered.filter(
-      (book) => book.PreciodeVenta >= min && book.PreciodeVenta <= max
+      (book) => book.SellingPrice >= min && book.SellingPrice <= max
     );
   }
 
@@ -52,34 +52,34 @@ export function filterBooks({
   if (selectedStock) {
     const value = selectedStock.value;
     if (value === "0") {
-      filtered = filtered.filter((book) => book.StockonHand === 0);
+      filtered = filtered.filter((book) => book.StockOnHand === 0);
     } else {
       const [min, max] = selectedStock.value.includes("+")
         ? [parseInt(selectedStock.value), Infinity]
         : selectedStock.value.split("-").map(Number);
       filtered = filtered.filter(
-        (book) => book.StockonHand >= min && book.StockonHand <= max
+        (book) => book.StockOnHand >= min && book.StockOnHand <= max
       );
     }
   }
 
   // Filtro por estante
   if (selectedShelf) {
-    filtered = filtered.filter((book) => book.BookCase === selectedShelf.value);
+    filtered = filtered.filter((book) => book.Bookcase === selectedShelf.value);
   }
 
   // Filtro por piso
   if (selectedFloor) {
     filtered = filtered.filter(
-      (book) => book.BookCaseFloor === selectedFloor.value
+      (book) => book.BookcaseFloor === selectedFloor.value
     );
   }
 
   // Orden alfabético
   if (sortOrder === "A-Z") {
-    filtered.sort((a, b) => (a.Name || "").localeCompare(b.Name || ""));
+    filtered.sort((a, b) => (a.ItemName || "").localeCompare(b.ItemName || ""));
   } else if (sortOrder === "Z-A") {
-    filtered.sort((a, b) => (b.Name || "").localeCompare(a.Name || ""));
+    filtered.sort((a, b) => (b.ItemName || "").localeCompare(a.ItemName || ""));
   }
 
   return filtered;

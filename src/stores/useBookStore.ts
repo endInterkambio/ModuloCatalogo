@@ -1,4 +1,4 @@
-// stores/useBookStore.ts
+// Import necessary dependencies and types
 import { create } from "zustand";
 import { type SingleValue } from "react-select";
 import { booksData, type Book } from "@/data/booksData";
@@ -7,56 +7,59 @@ import { filterBooks } from "@/utils/filterBooks";
 type StringOption = { value: string; label: string };
 type NumberOption = { value: number; label: string };
 
+// Interface defining the book store state and actions
 interface BookStore {
-  books: Book[];
-  filteredBooks: Book[];
-  currentPage: number;
+  // Core data
+  books: Book[];                    // All books in the system
+  filteredBooks: Book[];            // Books after applying filters
+  currentPage: number;              // Current pagination page
 
-  // Filtros
-  searchTerm: string;
-  sortOrder: string;
-  selectedPrice: SingleValue<StringOption>;
-  selectedStock: SingleValue<StringOption>;
-  selectedShelf: SingleValue<NumberOption>;
-  selectedFloor: SingleValue<NumberOption>;
+  // Filter state
+  searchTerm: string;               // Search term for book titles
+  sortOrder: string;                // Sort order for books (e.g., 'asc', 'desc')
+  selectedPrice: SingleValue<StringOption>;  // Selected price filter
+  selectedStock: SingleValue<StringOption>;  // Selected stock filter
+  selectedShelf: SingleValue<NumberOption>;  // Selected shelf filter
+  selectedFloor: SingleValue<NumberOption>;  // Selected floor filter
 
-  // Selección de libros
-  selectedBooks: Book[];
-  toggleBook: (book: Book) => void;
-  selectAllBooks: () => void;
-  selectCurrentPageBooks: () => void;
-  resetSelection: () => void;
-  resetCurrentPageSelection: () => void;
+  // Book selection state
+  selectedBooks: Book[];            // Currently selected books
+  toggleBook: (book: Book) => void; // Toggle selection of a single book
+  selectAllBooks: () => void;       // Select all books
+  selectCurrentPageBooks: () => void; // Select all books on current page
+  resetSelection: () => void;       // Clear all book selections
+  resetCurrentPageSelection: () => void; // Clear selections on current page
 
-  // Setters
-  setSearchTerm: (term: string) => void;
-  setSortOrder: (value: string) => void;
-  setSelectedPrice: (value: SingleValue<StringOption>) => void;
-  setSelectedStock: (value: SingleValue<StringOption>) => void;
-  setSelectedShelf: (value: SingleValue<NumberOption>) => void;
-  setSelectedFloor: (value: SingleValue<NumberOption>) => void;
-  setCurrentPage: (page: number) => void;
+  // Filter setter methods
+  setSearchTerm: (term: string) => void;    // Set search term
+  setSortOrder: (value: string) => void;    // Set sort order
+  setSelectedPrice: (value: SingleValue<StringOption>) => void;  // Set price filter
+  setSelectedStock: (value: SingleValue<StringOption>) => void;  // Set stock filter
+  setSelectedShelf: (value: SingleValue<NumberOption>) => void;  // Set shelf filter
+  setSelectedFloor: (value: SingleValue<NumberOption>) => void;  // Set floor filter
+  setCurrentPage: (page: number) => void;   // Set current page
 
-  // Core
-  applyFilters: () => void;
+  // Core functionality
+  applyFilters: () => void;  // Apply all filters to books
 }
 
+// Create the book store using Zustand
 export const useBookStore = create<BookStore>((set, get) => ({
-  books: booksData,
-  filteredBooks: booksData,
-  currentPage: 1,
+  books: booksData,           // Initialize with all books from data source
+  filteredBooks: booksData,   // Initially show all books
+  currentPage: 1,            // Start on first page
   setCurrentPage: (page) => set({ currentPage: page }),
 
-  // filtros
-  searchTerm: "",
-  sortOrder: "",
-  selectedPrice: null,
-  selectedStock: null,
-  selectedShelf: null,
-  selectedFloor: null,
+  // Filter state
+  searchTerm: "",               // Search term for book titles
+  sortOrder: "",                // Sort order for books (e.g., 'asc', 'desc')
+  selectedPrice: null,          // Selected price filter
+  selectedStock: null,          // Selected stock filter
+  selectedShelf: null,          // Selected shelf filter
+  selectedFloor: null,          // Selected floor filter
 
-  // Selección
-  selectedBooks: [],
+  // Book selection state
+  selectedBooks: [],            // Currently selected books
   toggleBook: (book) => {
     const selectedBooks = get().selectedBooks;
     const exists = selectedBooks.find((b) => b.SKU === book.SKU);
@@ -100,7 +103,7 @@ export const useBookStore = create<BookStore>((set, get) => ({
     set({ selectedBooks: newSelection });
   },
 
-  // setters con filtros reactivos
+  // Filter setter methods with reactive filter application
   setSearchTerm: (term) => {
     set({ searchTerm: term });
     get().applyFilters();
@@ -126,6 +129,7 @@ export const useBookStore = create<BookStore>((set, get) => ({
     get().applyFilters();
   },
 
+  // Core functionality
   applyFilters: () => {
     const {
       books,

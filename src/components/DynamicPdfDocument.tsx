@@ -1,34 +1,43 @@
+// Import necessary dependencies
 import jsPDF from "jspdf";
 import { type Book } from "@/data/booksData";
 import imagePlaceholder from "@assets/no-image.jpg";
 
 /**
- * Genera un catálogo PDF de libros con diseño 3 columnas por fila.
+ * Generates a PDF catalog from an array of books
+ * The catalog is formatted in a 3-column layout with each book displayed as a card
+ * @param books Array of books to include in the catalog
  */
 export const generateJsPdfCatalog = async (books: Book[]) => {
+  // Initialize PDF document
   const doc = new jsPDF("p", "mm", "a4");
   const pageWidth = doc.internal.pageSize.getWidth();
   const pageHeight = doc.internal.pageSize.getHeight();
-  const margin = 8;
-  const bottomMargin = 2; // Margen inferior indepen
 
+  // Layout constants
+  const margin = 8;
+  const bottomMargin = 2; // Independent bottom margin
   const columnCount = 3;
   const gap = 3;
-  const cardWidth =
-    (pageWidth - margin * 2 - gap * (columnCount - 1)) / columnCount;
+
+  // Calculate card dimensions based on page size and layout
+  const cardWidth = (pageWidth - margin * 2 - gap * (columnCount - 1)) / columnCount;
   const cardHeight = 90;
   const imageHeight = 50;
 
+  // Initialize coordinates
   let x = margin;
-  let y = margin + 10; // espacio para título
+  let y = margin + 10; // Space for title
 
-  // Funciones auxiliares para truncar texto
+  // Helper function to truncate text to a maximum length
   const truncateText = (text: string, maxLength: number): string => {
     if (!text) return "";
     if (text.length <= maxLength) return text;
     return text.substring(0, maxLength - 3) + "...";
   };
 
+  // Helper function to split text into multiple lines
+  // Ensures text fits within specified width and maximum number of lines
   const truncateToLines = (
     text: string,
     maxLines: number,
@@ -36,158 +45,51 @@ export const generateJsPdfCatalog = async (books: Book[]) => {
   ): string[] => {
     if (!text) return [""];
 
-    // Dividir el texto en líneas que caben en el ancho disponible
+    // Split text into lines that fit the available width
     const wrappedLines = doc.splitTextToSize(text, lineWidth);
 
-    // Si hay más líneas de las permitidas
+    // If there are more lines than allowed
     if (wrappedLines.length > maxLines) {
-      // Tomar solo las líneas permitidas
+      // Take only the allowed number of lines
       const truncatedLines = wrappedLines.slice(0, maxLines);
 
-      // Si la última línea es muy larga, truncarla y añadir "..."
-      const lastLineIndex = truncatedLines.length - 1;
-      const lastLine = truncatedLines[lastLineIndex];
-
-      // Calcular cuánto espacio necesitan los "..."
-      const ellipsisWidth = doc.getTextWidth("...");
-      const availableWidth = lineWidth - ellipsisWidth;
-
-      // Truncar la última línea si es necesario
-      if (doc.getTextWidth(lastLine) > availableWidth) {
-        let truncatedLastLine = lastLine;
-        while (
-          doc.getTextWidth(truncatedLastLine) > availableWidth &&
-          truncatedLastLine.length > 0
-        ) {
-          truncatedLastLine = truncatedLastLine.slice(0, -1);
-        }
-        truncatedLines[lastLineIndex] = truncatedLastLine + "...";
-      } else {
-        truncatedLines[lastLineIndex] = lastLine + "...";
+      // If the last line is too long, truncate it and add "..."
+      const lastLine = truncatedLines[truncatedLines.length - 1];
+      if (doc.getStringUnitWidth(lastLine) > lineWidth) {
+        const truncatedLastLine = truncateText(lastLine, lineWidth);
+        truncatedLines[truncatedLines.length - 1] = truncatedLastLine;
       }
-
+      
       return truncatedLines;
     }
-
+    
     return wrappedLines;
   };
 
-  type FitMode = "cover" | "contain";
-
-  const addBookImage = async (
-    doc: jsPDF,
-    imageDataUrl: string,
-    x: number,
-    y: number,
-    cardWidth: number,
-    imageHeight: number,
-    fitMode: FitMode = "cover" // 👈 por defecto 'cover'
-  ) => {
-    return new Promise<void>((resolve) => {
-      const img = new Image();
-      img.src = imageDataUrl;
-
-      img.onload = () => {
-        const targetWidth = cardWidth - 10;
-        const targetHeight = imageHeight;
-
-        const imgWidth = img.width;
-        const imgHeight = img.height;
-        const imgAspect = imgWidth / imgHeight;
-        const targetAspect = targetWidth / targetHeight;
-
-        if (fitMode === "cover") {
-          // Recorte para llenar el espacio completo
-          let sx = 0,
-            sy = 0,
-            sWidth = imgWidth,
-            sHeight = imgHeight;
-
-          if (imgAspect > targetAspect) {
-            sWidth = imgHeight * targetAspect;
-            sx = (imgWidth - sWidth) / 2;
-          } else {
-            sHeight = imgWidth / targetAspect;
-            sy = (imgHeight - sHeight) / 2;
-          }
-
-          const canvas = document.createElement("canvas");
-          const scale = 3;
-          canvas.width = targetWidth * scale;
-          canvas.height = targetHeight * scale;
-          const ctx = canvas.getContext("2d");
-
-          if (ctx) {
-            ctx.drawImage(
-              img,
-              sx,
-              sy,
-              sWidth,
-              sHeight,
-              0,
-              0,
-              canvas.width,
-              canvas.height
-            );
-
-            const highResDataUrl = canvas.toDataURL("image/jpeg", 0.95);
-            doc.addImage(
-              highResDataUrl,
-              "JPEG",
-              x + 5,
-              y + 3,
-              targetWidth,
-              targetHeight
-            );
-          }
-        } else if (fitMode === "contain") {
-          // Redimensiona manteniendo todo el contenido visible
-          let drawWidth = targetWidth;
-          let drawHeight = targetWidth / imgAspect;
-
-          // Si el alto excede el área disponible, ajustar a alto máximo
-          if (drawHeight > targetHeight) {
-            drawHeight = targetHeight;
-            drawWidth = drawHeight * imgAspect;
-          }
-
-          // Centrar horizontal y verticalmente
-          const offsetX = x + 5 + (targetWidth - drawWidth) / 2;
-          const offsetY = y + 3 + (targetHeight - drawHeight) / 2;
-
-          doc.addImage(
-            imageDataUrl,
-            "JPEG",
-            offsetX,
-            offsetY,
-            drawWidth,
-            drawHeight
-          );
-        }
-
-        resolve();
-      };
-
-      img.onerror = () => resolve();
-    });
-  };
-
-  // Título
+  // Add title to PDF
   doc.setFont("helvetica", "bold");
   doc.setFontSize(18);
   doc.text("Catálogo de libros", pageWidth / 2, margin + 2, {
     align: "center",
   });
 
+  // Process each book
   for (let i = 0; i < books.length; i++) {
     const book = books[i];
 
+    // Add new page if there's not enough space
     if (y + cardHeight > pageHeight - bottomMargin) {
       doc.addPage();
+      x = margin;
       y = margin;
     }
 
-    // Intenta cargar imagen como base64
+    // Add book card
+    doc.setDrawColor(220);
+    doc.setFillColor(255, 255, 255);
+    doc.rect(x, y, cardWidth, cardHeight, "FD");
+
+    // Add book image (or placeholder)
     let imageDataUrl = "";
     try {
       const res = await fetch(book.ImageUrl || "");
@@ -201,10 +103,104 @@ export const generateJsPdfCatalog = async (books: Book[]) => {
       imageDataUrl = ""; // dejar vacío si falla
     }
 
-    // Tarjeta
-    doc.setDrawColor(220);
-    doc.setFillColor(255, 255, 255);
-    doc.rect(x, y, cardWidth, cardHeight, "FD");
+    // Add book image
+    const addBookImage = async (
+      doc: jsPDF,
+      imageDataUrl: string,
+      x: number,
+      y: number,
+      cardWidth: number,
+      imageHeight: number,
+      fitMode: "cover" | "contain" = "cover" // 👈 por defecto 'cover'
+    ) => {
+      return new Promise<void>((resolve) => {
+        const img = new Image();
+        img.src = imageDataUrl;
+
+        img.onload = () => {
+          const targetWidth = cardWidth - 10;
+          const targetHeight = imageHeight;
+
+          const imgWidth = img.width;
+          const imgHeight = img.height;
+          const imgAspect = imgWidth / imgHeight;
+          const targetAspect = targetWidth / targetHeight;
+
+          if (fitMode === "cover") {
+            // Recorte para llenar el espacio completo
+            let sx = 0,
+              sy = 0,
+              sWidth = imgWidth,
+              sHeight = imgHeight;
+
+            if (imgAspect > targetAspect) {
+              sWidth = imgHeight * targetAspect;
+              sx = (imgWidth - sWidth) / 2;
+            } else {
+              sHeight = imgWidth / targetAspect;
+              sy = (imgHeight - sHeight) / 2;
+            }
+
+            const canvas = document.createElement("canvas");
+            const scale = 3;
+            canvas.width = targetWidth * scale;
+            canvas.height = targetHeight * scale;
+            const ctx = canvas.getContext("2d");
+
+            if (ctx) {
+              ctx.drawImage(
+                img,
+                sx,
+                sy,
+                sWidth,
+                sHeight,
+                0,
+                0,
+                canvas.width,
+                canvas.height
+              );
+
+              const highResDataUrl = canvas.toDataURL("image/jpeg", 0.95);
+              doc.addImage(
+                highResDataUrl,
+                "JPEG",
+                x + 5,
+                y + 3,
+                targetWidth,
+                targetHeight
+              );
+            }
+          } else if (fitMode === "contain") {
+            // Redimensiona manteniendo todo el contenido visible
+            let drawWidth = targetWidth;
+            let drawHeight = targetWidth / imgAspect;
+
+            // Si el alto excede el área disponible, ajustar a alto máximo
+            if (drawHeight > targetHeight) {
+              drawHeight = targetHeight;
+              drawWidth = drawHeight * imgAspect;
+            }
+
+            // Centrar horizontal y verticalmente
+            const offsetX = x + 5 + (targetWidth - drawWidth) / 2;
+            const offsetY = y + 3 + (targetHeight - drawHeight) / 2;
+
+            doc.addImage(
+              imageDataUrl,
+              "JPEG",
+              offsetX,
+              offsetY,
+              drawWidth,
+              drawHeight
+            );
+          }
+
+          resolve();
+        };
+
+        img.onerror = () => resolve();
+      });
+    };
 
     await addBookImage(
       doc,
@@ -216,7 +212,11 @@ export const generateJsPdfCatalog = async (books: Book[]) => {
       "contain"
     );
 
-    // Texto
+    // Add book title (truncated if too long)
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(9);
+    doc.setTextColor(0);
+
     let textY = y + imageHeight + 10;
     const textLeft = x + 5;
     const textWidth = cardWidth - 10;
@@ -225,10 +225,6 @@ export const generateJsPdfCatalog = async (books: Book[]) => {
     const priceHeight = 8; // Altura estimada del precio
     const availableTextHeight = cardHeight - imageHeight - 14 - priceHeight; // 10 = padding inicial + final
     const maxTextY = y + imageHeight + 10 + availableTextHeight;
-
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(9);
-    doc.setTextColor(0);
 
     // TÍTULO DEL LIBRO - Máximo 2 líneas
     const titleLines = truncateToLines(book.ItemName || "", 2, textWidth);
@@ -275,5 +271,6 @@ export const generateJsPdfCatalog = async (books: Book[]) => {
     }
   }
 
+  // Save the PDF
   doc.save("catalogo-libros.pdf");
 };

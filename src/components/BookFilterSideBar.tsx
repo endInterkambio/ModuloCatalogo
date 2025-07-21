@@ -1,9 +1,11 @@
+// Import necessary components
 import { Button, Form } from "react-bootstrap";
 import Select from "react-select";
 import { useBookStore } from "@/stores/useBookStore";
 import ActiveFilters from "@components/ActiveFilters";
 
-// Opciones
+// Filter options configuration
+// Price ranges for filtering
 const precios = [
   { value: "0-50", label: "S/. 0 - S/. 50" },
   { value: "51-100", label: "S/. 51 - S/. 100" },
@@ -11,6 +13,7 @@ const precios = [
   { value: "201+", label: "S/. 201 en adelante" },
 ];
 
+// Stock quantity ranges for filtering
 const cantidades = [
   { value: "0", label: "Sin stock" },
   { value: "1-5", label: "1 - 5" },
@@ -19,16 +22,19 @@ const cantidades = [
   { value: "21+", label: "21 en adelante" },
 ];
 
+// Generate shelf options (1-17)
 const estantes = [...Array(17).keys()].map((i) => ({
   value: i + 1,
   label: `Estante ${i + 1}`,
 }));
 
+// Generate floor options (1-5)
 const pisos = [...Array(5).keys()].map((i) => ({
   value: i + 1,
   label: `Piso ${i + 1}`,
 }));
 
+// Book filter sidebar component
 const BookFilterSidebar = () => {
   const {
     sortOrder,
@@ -49,8 +55,11 @@ const BookFilterSidebar = () => {
 
   return (
     <div className="bg-light p-3 h-100 border-end">
+      {/* Active filters display */}
       <h4 className="mb-4">Filtros</h4>
+      <ActiveFilters />
 
+      {/* Sort order selection */}
       <Form.Group className="mb-3">
         <Form.Label>Nombre</Form.Label>
         <Form.Select
@@ -63,6 +72,7 @@ const BookFilterSidebar = () => {
         </Form.Select>
       </Form.Group>
 
+      {/* Price range filter */}
       <Form.Group className="mb-3">
         <Form.Label>Precio</Form.Label>
         <Select
@@ -73,6 +83,7 @@ const BookFilterSidebar = () => {
         />
       </Form.Group>
 
+      {/* Stock quantity filter */}
       <Form.Group className="mb-3">
         <Form.Label>Stock</Form.Label>
         <Select
@@ -83,6 +94,7 @@ const BookFilterSidebar = () => {
         />
       </Form.Group>
 
+      {/* Shelf filter */}
       <Form.Label>Ubicación</Form.Label>
       <Form.Group className="mb-3 d-flex flex-row gap-2">
         <Select
@@ -98,7 +110,8 @@ const BookFilterSidebar = () => {
           placeholder="Piso"
         />
       </Form.Group>
-      <ActiveFilters />
+
+      {/* Book selection buttons */}
       <div className="py-3">
         <Button onClick={selectCurrentPageBooks} className="btn-custom">
           Seleccionar vista actual

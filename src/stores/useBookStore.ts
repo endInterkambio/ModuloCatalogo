@@ -151,6 +151,6 @@ export const useBookStore = create<BookStore>((set, get) => ({
       searchTerm,
     });
 
-    set({ filteredBooks: filtered });
+    set({ filteredBooks: filtered, currentPage: 1 });
   },
 }));

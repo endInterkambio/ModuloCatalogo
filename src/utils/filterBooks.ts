@@ -29,7 +29,11 @@ export function filterBooks({
       (book) => {
         const matchesText =
         book.ItemName?.toLowerCase().includes(lowerSearch) ||
-        book.Author?.toLowerCase().includes(lowerSearch);
+        book.SKU?.toLowerCase().includes(lowerSearch) ||
+        book.Author?.toLowerCase().includes(lowerSearch) ||
+        book.Publisher?.toLowerCase().includes(lowerSearch) ||
+        book.Category?.toLowerCase().includes(lowerSearch) ||
+        book.Filter?.toLowerCase().includes(lowerSearch);
 
         const matchesNumber = isNumeric && (book.ISBN?.toString().includes(searchTerm))
 

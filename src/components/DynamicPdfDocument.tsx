@@ -1,14 +1,14 @@
 // Import necessary dependencies
 import jsPDF from "jspdf";
 import { type Book } from "@/data/booksData";
-import imagePlaceholder from "@assets/no-image.jpg";
-import instagram from "@assets/instagram.png";
-import facebook from "@assets/facebook.png";
-import whatsapp from "@assets/whatsapp.png";
+import imagePlaceholder from "@/assets/no-image.jpg";
+import instagram from "@/assets/instagram.png";
+import facebook from "@/assets/facebook.png";
+import whatsapp from "@/assets/whatsapp.png";
 import { loadImageAsBase64 } from "@/utils/loadImageAsBase64";
-import mailIcon from "@assets/email.png";
-import phoneIcon from "@assets/phone.png";
-import logo from "@assets/logo.png"; // <-- ajusta la ruta a tu logo
+import mailIcon from "@/assets/email.png";
+import phoneIcon from "@/assets/phone.png";
+import logo from "@/assets/logo.png";
 
 export const generateJsPdfCatalog = async (books: Book[]) => {
   // Initialize PDF document

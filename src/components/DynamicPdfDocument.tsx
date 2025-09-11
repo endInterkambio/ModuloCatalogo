@@ -206,9 +206,9 @@ export const generateJsPdfCatalog = async (books: Book[]) => {
 
   // Título SOLO en la primera página
   doc.setFont("helvetica", "bold");
-  doc.setFontSize(18);
+  doc.setFontSize(20);
   doc.setTextColor(0, 171, 85); // verde corporativo
-  doc.text("Catálogo de Libros", pageWidth / 2, margin + headerHeight + 5, {
+  doc.text("Catálogo de Libros - 2025", pageWidth / 2, margin + headerHeight + 5, {
     align: "center",
   });
 

@@ -2,12 +2,23 @@
 import jsPDF from "jspdf";
 import { type Book } from "@/data/booksData";
 import imagePlaceholder from "@assets/no-image.jpg";
+import instagram from "@assets/instagram.png";
+import facebook from "@assets/facebook.png";
+import whatsapp from "@assets/whatsapp.png";
+import { loadImageAsBase64 } from "@/utils/loadImageAsBase64";
+import mailIcon from "@assets/email.png";
+import phoneIcon from "@assets/phone.png";
 
 /**
  * Generates a PDF catalog from an array of books
  * The catalog is formatted in a 3-column layout with each book displayed as a card
  * @param books Array of books to include in the catalog
  */
+
+/**
+ * Convierte una imagen a base64
+ */
+
 export const generateJsPdfCatalog = async (books: Book[]) => {
   // Initialize PDF document
   const doc = new jsPDF("p", "mm", "a4");
@@ -21,9 +32,10 @@ export const generateJsPdfCatalog = async (books: Book[]) => {
   const gap = 3;
 
   // Calculate card dimensions based on page size and layout
-  const cardWidth = (pageWidth - margin * 2 - gap * (columnCount - 1)) / columnCount;
-  const cardHeight = 90;
-  const imageHeight = 50;
+  const cardWidth =
+    (pageWidth - margin * 2 - gap * (columnCount - 1)) / columnCount;
+  const cardHeight = 80;
+  const imageHeight = 40;
 
   // Initialize coordinates
   let x = margin;
@@ -59,19 +71,99 @@ export const generateJsPdfCatalog = async (books: Book[]) => {
         const truncatedLastLine = truncateText(lastLine, lineWidth);
         truncatedLines[truncatedLines.length - 1] = truncatedLastLine;
       }
-      
+
       return truncatedLines;
     }
-    
+
     return wrappedLines;
   };
 
   // Add title to PDF
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(18);
-  doc.text("Catálogo de libros", pageWidth / 2, margin + 2, {
-    align: "center",
-  });
+  // doc.setFont("helvetica", "bold");
+  // doc.setFontSize(18);
+  // doc.text("Catálogo de libros", pageWidth / 2, margin + 2, {
+  //   align: "center",
+  // });
+
+  // Footer del PDF con íconos + texto más alineado y 3 columnas
+  const addFooter = async (
+    doc: jsPDF,
+    pageWidth: number,
+    pageHeight: number
+  ) => {
+    const footerHeight = 14;
+    const footerY = pageHeight - footerHeight;
+    const colWidths = [pageWidth * 0.4, pageWidth * 0.3, pageWidth * 0.3];
+    const iconSize = 10;
+    let xPos = 0;
+
+    // 🔹 Fondo completo
+    doc.setFillColor(0, 171, 85);
+    doc.rect(0, footerY, pageWidth, footerHeight, "F");
+
+    // 🔹 Estilo de texto
+    doc.setFontSize(16);
+    doc.setTextColor(255, 255, 255);
+    doc.setFont("helvetica", "bold");
+
+    const textY = footerY + footerHeight / 2 + 3;
+
+    // Helper: ícono + texto
+    const addIconWithText = async (
+      iconPath: string,
+      text: string,
+      x: number,
+      y: number
+    ) => {
+      const { base64, width, height } = await loadImageAsBase64(iconPath);
+      const aspectRatio = width / height;
+      let drawW = iconSize;
+      let drawH = iconSize;
+      if (aspectRatio > 1) drawH = iconSize / aspectRatio;
+      else drawW = iconSize * aspectRatio;
+
+      const offsetY = y + (footerHeight - drawH) / 2;
+      doc.addImage(base64, "PNG", x + 2, offsetY, drawW, drawH);
+
+      const textOffsetX = x + 2 + drawW + 0.3; // 🔹 espacio mínimo
+      doc.text(text, textOffsetX, textY);
+    };
+
+    // Columna 1: correo
+    await addIconWithText(mailIcon, "info@gusanitolector.pe", xPos, footerY);
+    xPos += colWidths[0];
+
+    // Columna 2: teléfono
+    await addIconWithText(phoneIcon, "+51 989-564-504", xPos, footerY);
+    xPos += colWidths[1];
+
+    // Columna 3: íconos sociales (Facebook, Instagram, WhatsApp)
+    const addIcon = async (imgPath: string, x: number, y: number) => {
+      const { base64, width, height } = await loadImageAsBase64(imgPath);
+      const aspectRatio = width / height;
+      let drawW = iconSize;
+      let drawH = iconSize;
+      if (aspectRatio > 1) drawH = iconSize / aspectRatio;
+      else drawW = iconSize * aspectRatio;
+
+      const offsetY = y + (footerHeight - drawH) / 2;
+      doc.addImage(base64, "PNG", x, offsetY, drawW, drawH);
+    };
+
+    // distribuir 3 íconos dentro de la columna
+    const icons = [facebook, instagram, whatsapp];
+    const spacing = 5; // espacio mínimo entre ellos
+    let socialX =
+      xPos +
+      (colWidths[2] -
+        (icons.length * iconSize + (icons.length - 1) * spacing)) /
+        2;
+
+    for (const icon of icons) {
+      await addIcon(icon, socialX, footerY);
+      socialX += iconSize + spacing;
+    }
+  };
 
   // Process each book
   for (let i = 0; i < books.length; i++) {
@@ -79,6 +171,9 @@ export const generateJsPdfCatalog = async (books: Book[]) => {
 
     // Add new page if there's not enough space
     if (y + cardHeight > pageHeight - bottomMargin) {
+      // Colocar footer en la página actual antes de pasar a la siguiente
+      await addFooter(doc, pageWidth, pageHeight);
+
       doc.addPage();
       x = margin;
       y = margin;
@@ -111,7 +206,7 @@ export const generateJsPdfCatalog = async (books: Book[]) => {
       y: number,
       cardWidth: number,
       imageHeight: number,
-      fitMode: "cover" | "contain" = "cover" // 👈 por defecto 'cover'
+      fitMode: "cover" | "contain" = "cover" // por defecto 'cover'
     ) => {
       return new Promise<void>((resolve) => {
         const img = new Image();
@@ -213,9 +308,6 @@ export const generateJsPdfCatalog = async (books: Book[]) => {
     );
 
     // Add book title (truncated if too long)
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(9);
-    doc.setTextColor(0);
 
     let textY = y + imageHeight + 10;
     const textLeft = x + 5;
@@ -226,6 +318,9 @@ export const generateJsPdfCatalog = async (books: Book[]) => {
     const availableTextHeight = cardHeight - imageHeight - 14 - priceHeight; // 10 = padding inicial + final
     const maxTextY = y + imageHeight + 10 + availableTextHeight;
 
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(9);
+    doc.setTextColor(0);
     // TÍTULO DEL LIBRO - Máximo 2 líneas
     const titleLines = truncateToLines(book.ItemName || "", 2, textWidth);
     titleLines.forEach((line) => {
@@ -237,22 +332,35 @@ export const generateJsPdfCatalog = async (books: Book[]) => {
     });
     textY += 2; // Espacio extra después del título
 
-    // AUTOR - Máximo 2 líneas
-    const authorLines = truncateToLines(book.Author || "", 2, textWidth);
-    authorLines.forEach((line) => {
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(9);
+    doc.setTextColor(0);
+    const isbnLines = truncateToLines(book.ISBN || "", 2, textWidth);
+    isbnLines.forEach((line) => {
       if (textY + 4 <= maxTextY) {
         // Solo agregar si hay espacio
-        doc.text(line, textLeft, textY);
+        doc.text("ISBN: " + line, textLeft, textY);
         textY += 4; // Espaciado entre líneas
       }
     });
-    textY += 2; // Espacio extra después del autor
+    textY += 2; //Espaciado extra después del ISBN
+
+    // AUTOR - Máximo 2 líneas
+    // const authorLines = truncateToLines(book.Author || "", 2, textWidth);
+    // authorLines.forEach((line) => {
+    //   if (textY + 4 <= maxTextY) {
+    //     // Solo agregar si hay espacio
+    //     doc.text(line, textLeft, textY);
+    //     textY += 4; // Espaciado entre líneas
+    //   }
+    // });
+    // textY += 2; // Espacio extra después del autor
 
     // EDITORIAL - Solo si hay espacio
-    if (textY + 4 <= maxTextY) {
-      const publisherText = truncateText(book.Publisher || "N/A", 25);
-      doc.text(publisherText, textLeft, textY);
-    }
+    // if (textY + 4 <= maxTextY) {
+    //   const publisherText = truncateText(book.Publisher || "N/A", 25);
+    //   doc.text(publisherText, textLeft, textY);
+    // }
 
     // PRECIO - Siempre al final de la tarjeta
     const priceY = y + cardHeight - 5; // 8mm desde el borde inferior
@@ -270,6 +378,8 @@ export const generateJsPdfCatalog = async (books: Book[]) => {
       x += cardWidth + gap;
     }
   }
+
+  // Footer
 
   // Save the PDF
   doc.save("catalogo-libros.pdf");

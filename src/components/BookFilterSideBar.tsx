@@ -2,6 +2,7 @@
 import { Button, Form } from "react-bootstrap";
 import Select from "react-select";
 import { useBookStore } from "@/stores/useBookStore";
+import { booksData } from "@/data/booksData";
 import ActiveFilters from "@components/ActiveFilters";
 
 // Filter options configuration
@@ -29,11 +30,21 @@ const pisos = [...Array(5).keys()].map((i) => ({
 
 // Book filter sidebar component
 const BookFilterSidebar = () => {
+  // Obtener condiciones únicas de los libros
+  const conditionOptions = Array.from(
+    new Set(
+      booksData
+        .map((b) => b.Condition)
+        .filter((c): c is string => typeof c === "string" && c.length > 0)
+        .sort((a, b) => a.localeCompare(b))
+    )
+  ).map((cond) => ({ value: cond, label: cond }));
   const {
     sortOrder,
     selectedStock,
     selectedShelf,
     selectedFloor,
+    selectedCondition,
     setSortOrder,
     setSelectedStock,
     setSelectedShelf,
@@ -46,6 +57,7 @@ const BookFilterSidebar = () => {
     manualPriceMax,
     setManualPriceMin,
     setManualPriceMax,
+    setSelectedCondition,
   } = useBookStore();
 
   return (
@@ -65,6 +77,17 @@ const BookFilterSidebar = () => {
           <option value="A-Z">A-Z</option>
           <option value="Z-A">Z-A</option>
         </Form.Select>
+      </Form.Group>
+
+      <Form.Label>Condición</Form.Label>
+      <Form.Group className="mb-3">
+        <Select
+          options={conditionOptions}
+          value={selectedCondition}
+          onChange={setSelectedCondition}
+          placeholder="Selecciona condición"
+          isClearable
+        />
       </Form.Group>
 
       {/* Price range filter */}

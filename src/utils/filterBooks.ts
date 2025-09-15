@@ -7,6 +7,7 @@ export function filterBooks({
   selectedStock,
   selectedShelf,
   selectedFloor,
+  selectedCondition,
   searchTerm,
   manualPriceMin,
   manualPriceMax,
@@ -16,6 +17,7 @@ export function filterBooks({
   selectedStock: SingleValue<{ value: string; label: string }>;
   selectedShelf: SingleValue<{ value: number; label: string }>;
   selectedFloor: SingleValue<{ value: number; label: string }>;
+  selectedCondition: SingleValue<{ value: string; label: string }>;
   searchTerm?: string;
   manualPriceMin?: number | null;
   manualPriceMax?: number | null;
@@ -41,6 +43,13 @@ export function filterBooks({
 
       return matchesText || matchesNumber;
     });
+  }
+
+  // Filtro por condición
+  if (selectedCondition) {
+    filtered = filtered.filter(
+      (book) => book.Condition === selectedCondition.value
+    );
   }
 
   // Filtro manual por precio min/max

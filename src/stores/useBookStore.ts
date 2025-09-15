@@ -20,6 +20,8 @@ interface BookStore {
   selectedStock: SingleValue<StringOption>; // Selected stock filter
   selectedShelf: SingleValue<NumberOption>; // Selected shelf filter
   selectedFloor: SingleValue<NumberOption>; // Selected floor filter
+  selectedCondition: SingleValue<StringOption>; // Selected condition filter
+  setSelectedCondition: (value: SingleValue<StringOption>) => void;
   manualPriceMin: number | null; // Precio mínimo manual
   manualPriceMax: number | null; // Precio máximo manual
   setManualPriceMin: (value: number | null) => void;
@@ -58,6 +60,11 @@ export const useBookStore = create<BookStore>((set, get) => ({
   selectedStock: null, // Selected stock filter
   selectedShelf: null, // Selected shelf filter
   selectedFloor: null, // Selected floor filter
+  selectedCondition: null, // Selected condition filter
+  setSelectedCondition: (value) => {
+    set({ selectedCondition: value });
+    get().applyFilters();
+  },
   manualPriceMin: null,
   manualPriceMax: null,
   setManualPriceMin: (value) => {
@@ -144,6 +151,7 @@ export const useBookStore = create<BookStore>((set, get) => ({
       selectedStock,
       selectedShelf,
       selectedFloor,
+      selectedCondition,
       searchTerm,
       manualPriceMin,
       manualPriceMax,
@@ -155,6 +163,7 @@ export const useBookStore = create<BookStore>((set, get) => ({
       selectedStock,
       selectedShelf,
       selectedFloor,
+      selectedCondition,
       searchTerm,
       manualPriceMin,
       manualPriceMax,

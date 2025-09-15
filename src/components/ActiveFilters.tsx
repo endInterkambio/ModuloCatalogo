@@ -11,6 +11,7 @@ const ActiveFilters = () => {
     selectedStock,
     selectedShelf,
     selectedFloor,
+    selectedCondition,
     manualPriceMin,
     manualPriceMax,
     setSortOrder,
@@ -19,6 +20,7 @@ const ActiveFilters = () => {
     setSelectedFloor,
     setManualPriceMin,
     setManualPriceMax,
+    setSelectedCondition,
   } = useBookStore();
 
   // Check if any filters are currently active
@@ -28,7 +30,8 @@ const ActiveFilters = () => {
     selectedShelf ||
     selectedFloor ||
     manualPriceMin !== null ||
-    manualPriceMax !== null;
+    manualPriceMax !== null ||
+    selectedCondition;
 
   // Return null if no filters are active
   if (!hasFilters) return null;
@@ -55,7 +58,18 @@ const ActiveFilters = () => {
               <FiX onClick={() => setSortOrder("")} style={iconStyle} />
             </span>
           )}
-          
+
+          {/* Condition filter tag */}
+          {selectedCondition && (
+            <span className={tagStyle}>
+              Condición: {selectedCondition.label}
+              <FiX
+                onClick={() => setSelectedCondition(null)}
+                style={iconStyle}
+              />
+            </span>
+          )}
+
           {/* Manual price range filter tag */}
           {(manualPriceMin !== null || manualPriceMax !== null) && (
             <span className={tagStyle}>
@@ -105,6 +119,7 @@ const ActiveFilters = () => {
             setSelectedFloor(null);
             setManualPriceMin(null);
             setManualPriceMax(null);
+            setSelectedCondition(null);
           }}
         >
           Limpiar todos los filtros

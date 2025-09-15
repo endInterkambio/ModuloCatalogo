@@ -173,6 +173,11 @@ const BookFilterSidebar = () => {
         <h5 className="d-inline">Libros seleccionados:</h5>{" "}
         <span>{useBookStore.getState().selectedBooks.length}</span>
       </div>
+      {/*Total books results*/}
+      <div className="mt-2 ">
+        <h5 className="d-inline">Total resultados:</h5>{" "}
+        <span>{useBookStore.getState().filteredBooks.length}</span>
+      </div>
     </div>
   );
 };

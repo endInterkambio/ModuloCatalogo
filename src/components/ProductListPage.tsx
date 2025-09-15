@@ -27,6 +27,20 @@ const ProductListPage = () => {
     }
   };
 
+  // Render pagination and count block
+  const PaginationBlock = () => (
+    <>
+      <SmartPagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+      />
+      <div className="text-center mt-2 mb-4">
+        Mostrando {booksToDisplay.length} resultados
+      </div>
+    </>
+  );
+
   return (
     <Container fluid>
       <Row style={{ minHeight: "100vh" }}>
@@ -34,25 +48,17 @@ const ProductListPage = () => {
         <Col xs={12} md={3} lg={2} className="p-0">
           <BookFilterSidebar />
         </Col>
-        
+
         {/* Main content area */}
         <Col xs={12} md={9} lg={10} className="p-4">
+          {/* Pagination and results count at the top (only if results >= 9) */}
+          {booksToDisplay.length >= 9 && totalPages > 1 && <PaginationBlock />}
+
           {/* Book grid display */}
           <BookPage books={booksToDisplay} />
 
-          {/* Pagination and results count - only show if more than one page */}
-          {totalPages > 1 && (
-            <>
-              <SmartPagination
-                totalPages={totalPages}
-                currentPage={currentPage}
-                onPageChange={handlePageChange}
-              />
-              <div className="text-center mt-2">
-                Mostrando {booksToDisplay.length} resultados
-              </div>
-            </>
-          )}
+          {/* Pagination and results count at the bottom */}
+          {totalPages > 1 && <PaginationBlock />}
         </Col>
       </Row>
     </Container>

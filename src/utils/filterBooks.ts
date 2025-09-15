@@ -36,7 +36,8 @@ export function filterBooks({
         book.Author?.toLowerCase().includes(lowerSearch) ||
         book.Publisher?.toLowerCase().includes(lowerSearch) ||
         book.Category?.toLowerCase().includes(lowerSearch) ||
-        book.Filter?.toLowerCase().includes(lowerSearch);
+        book.Filter?.toLowerCase().includes(lowerSearch) ||
+        book.Language?.toLowerCase().includes(lowerSearch);
 
       const matchesNumber =
         isNumeric && book.ISBN?.toString().includes(searchTerm);

@@ -5,13 +5,6 @@ import { useBookStore } from "@/stores/useBookStore";
 import ActiveFilters from "@components/ActiveFilters";
 
 // Filter options configuration
-// Price ranges for filtering
-const precios = [
-  { value: "0-50", label: "S/. 0 - S/. 50" },
-  { value: "51-100", label: "S/. 51 - S/. 100" },
-  { value: "101-200", label: "S/. 101 - S/. 200" },
-  { value: "201+", label: "S/. 201 en adelante" },
-];
 
 // Stock quantity ranges for filtering
 const cantidades = [
@@ -38,12 +31,10 @@ const pisos = [...Array(5).keys()].map((i) => ({
 const BookFilterSidebar = () => {
   const {
     sortOrder,
-    selectedPrice,
     selectedStock,
     selectedShelf,
     selectedFloor,
     setSortOrder,
-    setSelectedPrice,
     setSelectedStock,
     setSelectedShelf,
     setSelectedFloor,
@@ -51,6 +42,10 @@ const BookFilterSidebar = () => {
     selectCurrentPageBooks,
     resetCurrentPageSelection,
     resetSelection,
+    manualPriceMin,
+    manualPriceMax,
+    setManualPriceMin,
+    setManualPriceMax,
   } = useBookStore();
 
   return (
@@ -75,12 +70,30 @@ const BookFilterSidebar = () => {
       {/* Price range filter */}
       <Form.Group className="mb-3">
         <Form.Label>Precio</Form.Label>
-        <Select
-          options={precios}
-          value={selectedPrice}
-          onChange={setSelectedPrice}
-          placeholder="Selecciona precio"
-        />
+        <div className="d-flex gap-2 mt-2">
+          <Form.Control
+            type="number"
+            min={0}
+            placeholder="Mínimo"
+            value={manualPriceMin ?? ""}
+            onChange={(e) =>
+              setManualPriceMin(
+                e.target.value === "" ? null : Number(e.target.value)
+              )
+            }
+          />
+          <Form.Control
+            type="number"
+            min={0}
+            placeholder="Máximo"
+            value={manualPriceMax ?? ""}
+            onChange={(e) =>
+              setManualPriceMax(
+                e.target.value === "" ? null : Number(e.target.value)
+              )
+            }
+          />
+        </div>
       </Form.Group>
 
       {/* Stock quantity filter */}

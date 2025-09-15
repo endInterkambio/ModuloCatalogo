@@ -8,24 +8,27 @@ const ActiveFilters = () => {
   // Get filter state and setter functions from the store
   const {
     sortOrder,
-    selectedPrice,
     selectedStock,
     selectedShelf,
     selectedFloor,
+    manualPriceMin,
+    manualPriceMax,
     setSortOrder,
-    setSelectedPrice,
     setSelectedStock,
     setSelectedShelf,
     setSelectedFloor,
+    setManualPriceMin,
+    setManualPriceMax,
   } = useBookStore();
 
   // Check if any filters are currently active
   const hasFilters =
     sortOrder ||
-    selectedPrice ||
     selectedStock ||
     selectedShelf ||
-    selectedFloor;
+    selectedFloor ||
+    manualPriceMin !== null ||
+    manualPriceMax !== null;
 
   // Return null if no filters are active
   if (!hasFilters) return null;
@@ -52,12 +55,19 @@ const ActiveFilters = () => {
               <FiX onClick={() => setSortOrder("")} style={iconStyle} />
             </span>
           )}
-
-          {/* Price range filter tag */}
-          {selectedPrice && (
+          
+          {/* Manual price range filter tag */}
+          {(manualPriceMin !== null || manualPriceMax !== null) && (
             <span className={tagStyle}>
-              Precio: {selectedPrice.label}
-              <FiX onClick={() => setSelectedPrice(null)} style={iconStyle} />
+              Precio: {manualPriceMin !== null ? `S/. ${manualPriceMin}` : "-"}{" "}
+              {" - "} {manualPriceMax !== null ? `S/. ${manualPriceMax}` : "-"}
+              <FiX
+                onClick={() => {
+                  setManualPriceMin(null);
+                  setManualPriceMax(null);
+                }}
+                style={iconStyle}
+              />
             </span>
           )}
 
@@ -68,7 +78,6 @@ const ActiveFilters = () => {
               <FiX onClick={() => setSelectedStock(null)} style={iconStyle} />
             </span>
           )}
-
           {/* Shelf filter tag */}
           {selectedShelf && (
             <span className={tagStyle}>
@@ -76,7 +85,6 @@ const ActiveFilters = () => {
               <FiX onClick={() => setSelectedShelf(null)} style={iconStyle} />
             </span>
           )}
-
           {/* Floor filter tag */}
           {selectedFloor && (
             <span className={tagStyle}>
@@ -89,13 +97,14 @@ const ActiveFilters = () => {
         {/* Clear all filters button */}
         <Button
           variant="outline-danger"
-          className="mt-2"
+          className="mt-2 mb-4"
           onClick={() => {
             setSortOrder("");
-            setSelectedPrice(null);
             setSelectedStock(null);
             setSelectedShelf(null);
             setSelectedFloor(null);
+            setManualPriceMin(null);
+            setManualPriceMax(null);
           }}
         >
           Limpiar todos los filtros

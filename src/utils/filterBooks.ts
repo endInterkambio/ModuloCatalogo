@@ -4,30 +4,31 @@ import type { Book } from "@/data/booksData";
 export function filterBooks({
   data,
   sortOrder,
-  selectedPrice,
   selectedStock,
   selectedShelf,
   selectedFloor,
   searchTerm,
+  manualPriceMin,
+  manualPriceMax,
 }: {
   data: Book[];
   sortOrder: string;
-  selectedPrice: SingleValue<{ value: string; label: string }>;
   selectedStock: SingleValue<{ value: string; label: string }>;
   selectedShelf: SingleValue<{ value: number; label: string }>;
   selectedFloor: SingleValue<{ value: number; label: string }>;
   searchTerm?: string;
+  manualPriceMin?: number | null;
+  manualPriceMax?: number | null;
 }): Book[] {
   let filtered = [...data];
 
   // 🔍 Búsqueda por título o autor
   if (searchTerm && searchTerm.trim() !== "") {
     const lowerSearch = searchTerm.toLowerCase();
-    const isNumeric = /^\d+$/.test(searchTerm); 
+    const isNumeric = /^\d+$/.test(searchTerm);
 
-    filtered = filtered.filter(
-      (book) => {
-        const matchesText =
+    filtered = filtered.filter((book) => {
+      const matchesText =
         book.ItemName?.toLowerCase().includes(lowerSearch) ||
         book.SKU?.toLowerCase().includes(lowerSearch) ||
         book.Author?.toLowerCase().includes(lowerSearch) ||
@@ -35,21 +36,20 @@ export function filterBooks({
         book.Category?.toLowerCase().includes(lowerSearch) ||
         book.Filter?.toLowerCase().includes(lowerSearch);
 
-        const matchesNumber = isNumeric && (book.ISBN?.toString().includes(searchTerm))
+      const matchesNumber =
+        isNumeric && book.ISBN?.toString().includes(searchTerm);
 
-        return matchesText || matchesNumber;
-      }
-    );
+      return matchesText || matchesNumber;
+    });
   }
 
-  // Filtro por precio
-  if (selectedPrice) {
-    const [min, max] = selectedPrice.value.includes("+")
-      ? [parseInt(selectedPrice.value), Infinity]
-      : selectedPrice.value.split("-").map(Number);
-    filtered = filtered.filter(
-      (book) => book.SellingPrice >= min && book.SellingPrice <= max
-    );
+  // Filtro manual por precio min/max
+  if (manualPriceMin !== null || manualPriceMax !== null) {
+    filtered = filtered.filter((book) => {
+      const min = manualPriceMin ?? -Infinity;
+      const max = manualPriceMax ?? Infinity;
+      return book.SellingPrice >= min && book.SellingPrice <= max;
+    });
   }
 
   // Filtro por stock

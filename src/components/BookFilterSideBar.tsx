@@ -132,6 +132,11 @@ const BookFilterSidebar = () => {
           Quitar toda la selección
         </Button>
       </div>
+      {/* Book selected counter*/}
+      <div className="mt-4 ">
+        <h5 className="d-inline">Libros seleccionados:</h5>{" "}
+        <span>{useBookStore.getState().selectedBooks.length}</span>
+      </div>
     </div>
   );
 };
